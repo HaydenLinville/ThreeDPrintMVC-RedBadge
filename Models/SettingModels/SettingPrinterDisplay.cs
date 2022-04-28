@@ -9,7 +9,7 @@ namespace Models.SettingModels
 {
     public class SettingPrinterDisplay
     {
-        
+        //maybe add materialbrand
         public MaterialTypes MaterialType { get; set; }
         public string Color { get; set; }
 

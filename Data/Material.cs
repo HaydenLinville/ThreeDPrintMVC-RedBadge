@@ -15,7 +15,7 @@ namespace Data
         [Required]
         public Guid UserId { get; set; }
         [Required]
-        public string Brand { get; set; }
+        public string MaterialBrand { get; set; }
         [Required]
         public MaterialTypes MaterialType { get; set; }
         [Required]

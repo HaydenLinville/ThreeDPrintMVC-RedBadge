@@ -10,7 +10,7 @@ namespace Models.Material
     public class MaterialDetail
     {
         public int MaterialId { get; set; }
-        public string Brand { get; set; }
+        public string MaterialBrand { get; set; }
         public MaterialTypes MaterialType { get; set; }
         public string Color { get; set; }
     }
