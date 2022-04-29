@@ -17,6 +17,26 @@ namespace Services
             userId = _userId;
         }
 
+        public bool CreateMaterial(MaterialCreate model)
+        {
+            var entity = new Material()
+            {
+                MaterialType = model.MaterialType,
+                Color = model.Color,
+                MaterialBrand = model.MaterialBrand,
+
+            };
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.Materials.Add(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+
+
+        }
+
         public MaterialDetail GetMaterialById(int id)
         {
             using (var ctx = new ApplicationDbContext())

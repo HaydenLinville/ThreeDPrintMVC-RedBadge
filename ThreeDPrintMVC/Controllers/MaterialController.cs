@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
-using Models.PrinterModels;
+using Models.Material;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -9,13 +9,13 @@ using System.Web.Mvc;
 
 namespace ThreeDPrintMVC.Controllers
 {
-    public class PrinterController : Controller
+    public class MaterialController : Controller
     {
-        // GET: Printer
+        // GET: Material
         public ActionResult Index()
         {
-            var service = CreatePrinterService();
-            var model = service.GetPrinters();
+            var srv = MService();
+            var model = srv.GetMaterials();
             return View(model);
         }
 
@@ -26,94 +26,80 @@ namespace ThreeDPrintMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PrinterCreate model)
+        public ActionResult Create(MaterialCreate model)
         {
-            var service = CreatePrinterService();
-
-            if (!ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
                 return View(model);
             }
-              
-            if(service.CreatePrinter(model))
+
+            var srv = MService();
+
+            if(srv.CreateMaterial(model))
             {
                 return RedirectToAction("Index");
             }
-
-
             return View(model);
-
         }
-
-
 
         public ActionResult Detail(int id)
         {
-            var service = CreatePrinterService();
-
-            var entity = service.GetPrinterById(id);
-
+            var srv = MService();
+            var entity = srv.GetMaterialById(id);
             return View(entity);
         }
 
-
         public ActionResult Edit(int id)
         {
-            var srv = CreatePrinterService();
+            var srv = MService();
+            var entity = srv.GetMaterialById(id);
+            return View(entity);
 
-            var model = srv.GetPrinterById(id);
-
-            return View(model);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, PrinterEdit model)
+        public ActionResult Edit(int id, MaterialEdit model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var srv = CreatePrinterService();
+            var svr = MService();
 
-            if (srv.UpdatePrinter(model))
+            if (svr.UpdateMaterial(model))
             {
                 return RedirectToAction("Index");
             }
 
             return View(model);
-
         }
 
-        [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var srv = CreatePrinterService();
-
-            var model = srv.GetPrinterById(id);
-
+            var srv = MService();
+            var model = srv.GetMaterialById(id);
             return View(model);
         }
 
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeletePrinter(int id)
+        public ActionResult DeleteMaterial(int id)
         {
-            var srv = CreatePrinterService();
-
-            srv.DeletePrinter(id);
-
+            var srv = MService();
+            srv.DeleteMaterial(id);
             return RedirectToAction("Index");
         }
 
-
-        private PrinterService CreatePrinterService()
+        private MaterialService MService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new PrinterService(userId);
-            return service;
+            var srv = new MaterialService(userId);
+            return srv;
+
         }
 
     }

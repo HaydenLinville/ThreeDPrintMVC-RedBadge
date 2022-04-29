@@ -12,6 +12,8 @@ namespace Data
     {
         [Key]
         public int SettingId { get; set; }
+        [Required]
+        public Guid UserId { get; set; }
 
         [ForeignKey("Material")]
         public int MaterialId { get; set; }

@@ -64,6 +64,7 @@
     <Compile Include="PrinterModels\PrinterListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingModels\SettingCreate.cs" />
+    <Compile Include="SettingModels\SettingDetail.cs" />
     <Compile Include="SettingModels\SettingEdit.cs" />
     <Compile Include="SettingModels\SettingPrinterDisplay.cs" />
   </ItemGroup>
