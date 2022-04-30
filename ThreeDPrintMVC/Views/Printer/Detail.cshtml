@@ -1,0 +1,66 @@
+﻿@model Models.PrinterModels.PrinterDetail
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>PrinterDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PrinterId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrinterBrand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterBrand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrinterModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasDualExtruder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasDualExtruder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CanAutoLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CanAutoLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasHeatedBed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasHeatedBed)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

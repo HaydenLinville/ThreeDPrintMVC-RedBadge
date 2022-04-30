@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ThreeDPrintMVC.Controllers
 {
+    [Authorize]
     public class SettingController : Controller
     {
         // GET: Setting

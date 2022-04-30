@@ -21,6 +21,7 @@ namespace Services
         {
             var entity = new Setting()
             {
+                UserId = _userId,
                 MaterialId = model.MaterialId,
                 PrinterId = model.PrinterId,
                 BedTemp = model.BedTemp,

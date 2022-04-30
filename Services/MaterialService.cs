@@ -14,13 +14,14 @@ namespace Services
 
         public MaterialService(Guid userId)
         {
-            userId = _userId;
+            _userId = userId;
         }
 
         public bool CreateMaterial(MaterialCreate model)
         {
             var entity = new Material()
             {
+                UserId = _userId,
                 MaterialType = model.MaterialType,
                 Color = model.Color,
                 MaterialBrand = model.MaterialBrand,

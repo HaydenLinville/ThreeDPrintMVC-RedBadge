@@ -1,0 +1,72 @@
+﻿@model Models.PrinterModels.PrinterDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PrinterDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PrinterId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrinterBrand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterBrand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrinterModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasDualExtruder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasDualExtruder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CanAutoLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CanAutoLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasHeatedBed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasHeatedBed)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

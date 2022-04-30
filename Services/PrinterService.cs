@@ -14,12 +14,12 @@ namespace Services
 
         public PrinterService(Guid userId)
         {
-            _userId = userId;
+              _userId = userId;
         }
 
         public bool CreatePrinter(PrinterCreate model)
         {
-            var entity = new Printer() { PrinterBrand = model.PrinterBrand, PrinterModel = model.PrinterModel, CanAutoLevel = model.CanAutoLevel, HasDualExtruder = model.HasDualExtruder, HasHeatedBed = model.HasHeatedBed, };
+            var entity = new Printer() { UserId = _userId, PrinterBrand = model.PrinterBrand, PrinterModel = model.PrinterModel, CanAutoLevel = model.CanAutoLevel, HasDualExtruder = model.HasDualExtruder, HasHeatedBed = model.HasHeatedBed, };
 
             using (var ctx = new ApplicationDbContext())
             {
