@@ -52,7 +52,7 @@ namespace Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var quary = ctx.Materials.Where(e => e.UserId == _userId).Select(e => new MaterialListItem { MaterialId = e.MaterialId, Color = e.Color, MaterialType = e.MaterialType });
+                var quary = ctx.Materials.Where(e => e.UserId == _userId).Select(e => new MaterialListItem { MaterialBrand = e.MaterialBrand, MaterialId = e.MaterialId, Color = e.Color, MaterialType = e.MaterialType });
 
                 return quary.ToArray();
             }

@@ -44,7 +44,8 @@ namespace Services
                     HasHeatedBed = entity.HasHeatedBed,
                     Settings = entity.Settings.Select(i => new Models.SettingModels.SettingPrinterDisplay
                     {
-
+                        CustomSettingName = i.CustomSettingName,
+                        SettingId = i.SettingId,
                         BedTemp = i.BedTemp,
                         MaterialTemp = i.MaterialTemp,
                         Speed = i.Speed,

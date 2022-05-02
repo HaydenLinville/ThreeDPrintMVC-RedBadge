@@ -10,13 +10,6 @@
     <h4>PrinterDetail</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PrinterId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PrinterId)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.PrinterBrand)
@@ -57,10 +50,73 @@
         <dd>
             @Html.DisplayFor(model => model.HasHeatedBed)
         </dd>
-
     </dl>
+    <table class="table">
+        <h4>Custom Settings for @Model.PrinterModel.ToString(): </h4>
+        <div>
+            <p>@Html.ActionLink("Add Custom Settings", "Create", "Setting")</p>
+        </div>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Settings.First().CustomSettingName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Settings.First().MaterialType)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Settings.First().Color)
+            </th>
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.Settings.First().BedTemp)
+            </th>
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.Settings.First().MaterialTemp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Settings.First().Speed)
+            </th>
+        </tr>
+        @foreach (var m in Model.Settings)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelI => m.CustomSettingName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelI => m.MaterialType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelI => m.Color)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelI => m.BedTemp)
+        </td>
+
+
+        <td>
+            @Html.DisplayFor(modelI => m.MaterialTemp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelI => m.Speed)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "Setting", new { id = m.SettingId}, null)|
+            @Html.ActionLink("Delete", "Delete", "Setting", new {id = m.SettingId}, null)
+        </td>
+    </tr>
+        }
+
+    </table>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit Printer", "Edit", new { id = Model.PrinterId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

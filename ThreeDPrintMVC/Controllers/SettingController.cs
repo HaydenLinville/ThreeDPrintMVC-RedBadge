@@ -20,14 +20,23 @@ namespace ThreeDPrintMVC.Controllers
 
         public ActionResult Create()
         {
-            
+            var ps = CreatePrinterService();
+            var ms = MService();
+            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterBrand");
+            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialType");
             return View();
         }
+        
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(SettingCreate model)
         {
+            var ps = CreatePrinterService();
+            var ms = MService();
+            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterBrand");
+            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialType");
+
             if(!ModelState.IsValid)
             {
                 return View(model);
@@ -37,7 +46,7 @@ namespace ThreeDPrintMVC.Controllers
 
             if(src.CreateSetting(model))
             {
-                return RedirectToAction("Detail", "PrinterController", new {id =model.PrinterId});
+                return RedirectToAction("Detail", "Printer", new {id =model.PrinterId});
                 //play around with later to figure out how to get to details with the int id. 
             }
             return View(model);
@@ -45,16 +54,27 @@ namespace ThreeDPrintMVC.Controllers
 
         public ActionResult Edit(int id)
         {
+            var ps = CreatePrinterService();
+            var ms = MService();
+            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterBrand");
+            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialType");
+
             var srv = SService();
             var setting = srv.GetSettingById(id);
-            return View(setting);
+            var model = new SettingEdit { CustomSettingName=setting.CustomSettingName, BedTemp = setting.BedTemp, MaterialId = setting.MaterialId, PrinterId = setting.PrinterId, MaterialTemp = setting.MaterialTemp, SettingId = setting.SettingId, Speed = setting.Speed };
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, SettingEdit model)
         {
-            if(!ModelState.IsValid)
+            var ps = CreatePrinterService();
+            var ms = MService();
+            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterBrand");
+            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialType");
+
+            if (!ModelState.IsValid)
             {
                 return View(model);
             }
@@ -62,7 +82,7 @@ namespace ThreeDPrintMVC.Controllers
             var srv = SService();
             if(srv.UpdateSetting(model))
             {
-                return RedirectToAction("Detail", new {id = model.SettingId});
+                return RedirectToAction("Detail", "Printer", new { id = model.PrinterId });
             }
 
             return View(model);
@@ -73,7 +93,7 @@ namespace ThreeDPrintMVC.Controllers
         {
             var srv = SService();
             var model = srv.GetSettingById(id);
-            return View();
+            return View(model);
 
         }
 
@@ -85,7 +105,7 @@ namespace ThreeDPrintMVC.Controllers
             var srv = SService();
             srv.DeleteSetting(id);
 
-            return RedirectToAction("Index", "PrinterController");
+            return RedirectToAction("Index", "Printer");
         }
 
         public ActionResult Detail(int id)
@@ -102,5 +122,20 @@ namespace ThreeDPrintMVC.Controllers
             var srv = new SettingService(user);
             return srv;
         }
+
+        private PrinterService CreatePrinterService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new PrinterService(userId);
+            return service;
+        }
+        private MaterialService MService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var srv = new MaterialService(userId);
+            return srv;
+
+        }
+
     }
 }

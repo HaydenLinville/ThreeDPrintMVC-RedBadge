@@ -53,8 +53,9 @@ namespace ThreeDPrintMVC.Controllers
         public ActionResult Edit(int id)
         {
             var srv = MService();
-            var entity = srv.GetMaterialById(id);
-            return View(entity);
+            var edit = srv.GetMaterialById(id);
+            var model = new MaterialEdit { MaterialId = edit.MaterialId, Color = edit.Color, MaterialBrand = edit.MaterialBrand, MaterialType = edit.MaterialType };
+            return View(model);
 
         }
 
@@ -67,6 +68,7 @@ namespace ThreeDPrintMVC.Controllers
             {
                 return View(model);
             }
+
 
             var svr = MService();
 

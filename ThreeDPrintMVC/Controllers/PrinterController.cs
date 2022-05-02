@@ -62,9 +62,10 @@ namespace ThreeDPrintMVC.Controllers
         {
             var srv = CreatePrinterService();
 
-            var model = srv.GetPrinterById(id);
+            var detailModel = srv.GetPrinterById(id);
+            var editModel = new PrinterEdit { PrinterId = detailModel.PrinterId, CanAutoLevel = detailModel.CanAutoLevel, PrinterModel = detailModel.PrinterModel, HasDualExtruder = detailModel.HasDualExtruder, HasHeatedBed = detailModel.HasHeatedBed, PrinterBand = detailModel.PrinterBrand };
 
-            return View(model);
+            return View(editModel);
         }
 
         [HttpPost]

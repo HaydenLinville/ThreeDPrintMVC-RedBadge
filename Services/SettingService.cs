@@ -22,6 +22,7 @@ namespace Services
             var entity = new Setting()
             {
                 UserId = _userId,
+                CustomSettingName = model.CustomSettingName,
                 MaterialId = model.MaterialId,
                 PrinterId = model.PrinterId,
                 BedTemp = model.BedTemp,
@@ -41,6 +42,7 @@ namespace Services
             {
                 var entity = ctx.Settings.Single(e => e.SettingId == model.SettingId && e.UserId == _userId);
 
+                entity.CustomSettingName = model.CustomSettingName;
                 entity.MaterialId = model.MaterialId;
                 entity.PrinterId = model.PrinterId;
                 entity.MaterialTemp = model.MaterialTemp;
@@ -71,6 +73,7 @@ namespace Services
 
                 return new SettingDetail
                 {
+                    CustomSettingName = setDe.CustomSettingName,
                     SettingId = setDe.SettingId,
                     PrinterModel = setDe.Printer.PrinterModel,
                     MaterialTypes = setDe.Material.MaterialType,
