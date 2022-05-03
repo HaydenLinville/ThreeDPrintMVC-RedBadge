@@ -18,24 +18,27 @@ namespace ThreeDPrintMVC.Controllers
             return View();
         }
 
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             var ps = CreatePrinterService();
             var ms = MService();
-            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterModel");
-            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialType");
+            var n = ps.GetPrinterById(id);
+            ViewBag.PrinterBrand = n.PrinterBrand;
+            ViewBag.PrinterId = n.PrinterId;
+            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialBrand");
             return View();
         }
         
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(SettingCreate model)
+        public ActionResult Create(SettingCreate model, int id)
         {
             var ps = CreatePrinterService();
             var ms = MService();
-            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterModel");
-            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialType");
+            var n = ps.GetPrinterById(id);
+            ViewBag.PrinterId = n.PrinterId;
+            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialBrand");
 
             if(!ModelState.IsValid)
             {
@@ -60,7 +63,7 @@ namespace ThreeDPrintMVC.Controllers
             var ps = CreatePrinterService();
             var ms = MService();
             ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterModel");
-            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialType");
+            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialBrand");
 
             var srv = SService();
             var setting = srv.GetSettingById(id);
@@ -75,8 +78,8 @@ namespace ThreeDPrintMVC.Controllers
             var ps = CreatePrinterService();
             var ms = MService();
             ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterModel");
-            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialType");
-            //working on setting list items for setting display on printer just changed everything to printer model instead of brand. might need to check display on one of the model layers. 
+            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialBrand");
+            
             if (!ModelState.IsValid)
             {
                 return View(model);

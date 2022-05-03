@@ -10,7 +10,7 @@
 <div class="form-horizontal">
 
     <hr />
-    <dl class="dl-horizontal col-md-offset-1 col-md-11">
+    <dl class="dl-horizontal col-md-offset-0 col-md-12">
 
         <dt>
             @Html.DisplayNameFor(model => model.MaterialBrand)
@@ -45,7 +45,10 @@
                 <div class="col-md-offset-1 col-md-11">
                     <input type="submit" value="Delete" class="btn btn-danger" />
 
-                    <input type="button" value="Cancel" class="btn btn-default" onclick="window.location= '@Url.Action("Index", "Material", new { id= Model.MaterialId })'" />
+                    <input type="button" value="Cancel" class="btn btn-default" onclick="goPrev()" />
+                    <script>
+                        function goPrev() { window.history.back(); }
+                    </script>
                 </div>
             }
         </div>

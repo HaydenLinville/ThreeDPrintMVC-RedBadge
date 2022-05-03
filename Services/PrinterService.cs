@@ -28,6 +28,7 @@ namespace Services
             }
         }
 
+
         public PrinterDetail GetPrinterById(int id)
         {
             using (var ctx = new ApplicationDbContext())

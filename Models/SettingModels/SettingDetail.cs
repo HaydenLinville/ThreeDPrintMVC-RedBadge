@@ -17,6 +17,7 @@ namespace Models.SettingModels
         public int MaterialId { get; set; }
         [Display(Name = "Printer")]
         public int PrinterId { get; set; }
+        [Display(Name ="Printer Model")]
         public string PrinterModel { get; set; }
         [Display(Name = "Material")]
         public MaterialTypes MaterialTypes { get; set; }

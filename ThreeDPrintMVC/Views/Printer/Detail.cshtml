@@ -55,7 +55,7 @@
         <div class="col-md-offset-0 col-md-12 ">
             <input type="button" value="Edit" class="btn btn-warning" onclick="window.location= '@Url.Action("Edit", "Printer", new {id = Model.PrinterId}, null )'" />
             <input type="button" value="Delete" class="btn btn-danger" onclick="window.location= '@Url.Action("Delete", "Printer", new {id = Model.PrinterId})'" />
-            <input type="button" value="Back to Printers" class="btn btn-default" onclick="window.location= '@Url.Action("Index", "Material")'" />
+            <input type="button" value="Back to Printers" class="btn btn-default" onclick="window.location= '@Url.Action("Index", "Printer")'" />
         </div>
 
         <br />
@@ -139,7 +139,7 @@
     }
     <br />
     <div class="col-md-offset-0 col-md-12 ">
-        <input type="button" value="Add New Custom Settings" class="btn btn-primary" onclick="window.location= '@Url.Action("Create", "Setting")'" />
+        <input type="button" value="Add New Custom Settings" class="btn btn-primary" onclick="window.location= '@Url.Action("Create", "Setting", new {id = Model.PrinterId})'" />
     </div>
     <br />
 </div>
