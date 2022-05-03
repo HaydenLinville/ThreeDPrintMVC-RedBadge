@@ -4,19 +4,12 @@
     ViewBag.Title = "Detail";
 }
 
-<h2>Detail</h2>
+<h2>@Model.MaterialBrand.ToString() Info</h2>
 
 <div>
-    <h4>MaterialDetail</h4>
+
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MaterialId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaterialId)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.MaterialBrand)
@@ -41,10 +34,16 @@
         <dd>
             @Html.DisplayFor(model => model.Color)
         </dd>
+        <br />
 
     </dl>
+    <div class="dl-horizontal">
+        <div class="col-md-offset-1 col-md-11 ">
+            <input type="button" value="Edit" class="btn btn-warning" onclick="window.location= '@Url.Action("Edit", "Material", new {id = Model.MaterialId}, null )'" />
+            <input type="button" value="Delete" class="btn btn-danger" onclick="window.location= '@Url.Action("Delete", "Material", new {id = Model.MaterialId})'" />
+            <input type="button" value="Back to Materials" class="btn btn-default" onclick="window.location= '@Url.Action("Index", "Material")'" />
+        </div>
+
+    </div>
+    <br />
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.MaterialId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

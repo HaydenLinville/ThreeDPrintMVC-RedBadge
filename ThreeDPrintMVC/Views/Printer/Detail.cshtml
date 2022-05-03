@@ -4,10 +4,10 @@
     ViewBag.Title = "Detail";
 }
 
-<h2>Detail</h2>
+<h2>@Model.PrinterModel.ToString()</h2>
 
 <div>
-    <h4>PrinterDetail</h4>
+
     <hr />
     <dl class="dl-horizontal">
 
@@ -51,82 +51,96 @@
             @Html.DisplayFor(model => model.HasHeatedBed)
         </dd>
     </dl>
-    <table class="table">
-        <h4>Custom Settings for @Model.PrinterModel.ToString(): </h4>
-        <div>
-            <p>@Html.ActionLink("Add Custom Settings", "Create", "Setting")</p>
+    <div class="dl-horizontal">
+        <div class="col-md-offset-0 col-md-12 ">
+            <input type="button" value="Edit" class="btn btn-warning" onclick="window.location= '@Url.Action("Edit", "Printer", new {id = Model.PrinterId}, null )'" />
+            <input type="button" value="Delete" class="btn btn-danger" onclick="window.location= '@Url.Action("Delete", "Printer", new {id = Model.PrinterId})'" />
+            <input type="button" value="Back to Printers" class="btn btn-default" onclick="window.location= '@Url.Action("Index", "Material")'" />
         </div>
-        @if (TempData.ContainsKey("SettingSave"))
-        {
 
-            <div class="alert alert-success fade in" role="alert">
-                <button type="button" class="close" data-dismiss="alert">
-                    <span>&times;</span>
-                </button>
-                @TempData["SettingSave"]
-            </div>
-        }
-        <tr>
+        <br />
+    </div>
+    @if (Model.Settings.Count() != 0)
+    {
 
-            <th>
-                @Html.DisplayNameFor(model => model.Settings.First().CustomSettingName)
-            </th>
+        <table class="table">
+            <br />
+            <h2>Custom Settings for @Model.PrinterModel.ToString(): </h2>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Settings.First().MaterialType)
-            </th>
+            @if (TempData.ContainsKey("SettingSave"))
+            {
 
-            <th>
-                @Html.DisplayNameFor(model => model.Settings.First().Color)
-            </th>
-
-
-            <th>
-                @Html.DisplayNameFor(model => model.Settings.First().BedTemp)
-            </th>
-
-
-            <th>
-                @Html.DisplayNameFor(model => model.Settings.First().MaterialTemp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Settings.First().Speed)
-            </th>
-        </tr>
-        @foreach (var m in Model.Settings)
-        {
+                <div class="alert alert-success fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span>&times;</span>
+                    </button>
+                    @TempData["SettingSave"]
+                </div>
+            }
             <tr>
-                <td>
-                    @Html.DisplayFor(modelI => m.CustomSettingName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelI => m.MaterialType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelI => m.Color)
-                </td>
 
-                <td>
-                    @Html.DisplayFor(modelI => m.BedTemp)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Settings.First().CustomSettingName)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Settings.First().MaterialType)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Settings.First().Color)
+                </th>
 
 
-                <td>
-                    @Html.DisplayFor(modelI => m.MaterialTemp)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelI => m.Speed)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Setting", new { id = m.SettingId }, null)|
-                    @Html.ActionLink("Delete", "Delete", "Setting", new { id = m.SettingId }, null)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Settings.First().BedTemp)
+                </th>
+
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Settings.First().MaterialTemp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Settings.First().Speed)
+                </th>
             </tr>
-        }
+            @foreach (var m in Model.Settings)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelI => m.CustomSettingName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelI => m.MaterialType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelI => m.Color)
+                    </td>
 
-    </table>
+                    <td>
+                        @Html.DisplayFor(modelI => m.BedTemp)
+                    </td>
+
+
+                    <td>
+                        @Html.DisplayFor(modelI => m.MaterialTemp)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelI => m.Speed)
+                    </td>
+                    <td>
+                        <input type="button" value="Edit" class="btn btn-warning btn-xs" onclick="window.location = '@Url.Action("Edit", "Setting", new {id = m.SettingId})'" />
+                        <input type="button" value="Delete" class="btn btn-danger btn-xs" onclick="window.location = '@Url.Action("Delete", "Setting", new {id = m.SettingId})'" />
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+    <br />
+    <div class="col-md-offset-0 col-md-12 ">
+        <input type="button" value="Add New Custom Settings" class="btn btn-primary" onclick="window.location= '@Url.Action("Create", "Setting")'" />
+    </div>
+    <br />
 </div>
-<p>
-    @Html.ActionLink("Edit Printer", "Edit", new { id = Model.PrinterId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

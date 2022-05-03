@@ -22,7 +22,7 @@ namespace ThreeDPrintMVC.Controllers
         {
             var ps = CreatePrinterService();
             var ms = MService();
-            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterBrand");
+            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterModel");
             ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialType");
             return View();
         }
@@ -34,7 +34,7 @@ namespace ThreeDPrintMVC.Controllers
         {
             var ps = CreatePrinterService();
             var ms = MService();
-            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterBrand");
+            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterModel");
             ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialType");
 
             if(!ModelState.IsValid)
@@ -59,7 +59,7 @@ namespace ThreeDPrintMVC.Controllers
         {
             var ps = CreatePrinterService();
             var ms = MService();
-            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterBrand");
+            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterModel");
             ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialType");
 
             var srv = SService();
@@ -74,9 +74,9 @@ namespace ThreeDPrintMVC.Controllers
         {
             var ps = CreatePrinterService();
             var ms = MService();
-            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterBrand");
+            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterModel");
             ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialType");
-
+            //working on setting list items for setting display on printer just changed everything to printer model instead of brand. might need to check display on one of the model layers. 
             if (!ModelState.IsValid)
             {
                 return View(model);

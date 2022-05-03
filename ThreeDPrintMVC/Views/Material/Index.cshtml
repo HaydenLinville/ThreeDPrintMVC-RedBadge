@@ -4,10 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Material</h2>
+<h2>Your Material</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    
+    
 </p>
 @if(TempData.ContainsKey("SaveResult"))
             {
@@ -48,11 +49,15 @@
         @Html.DisplayFor(modelItem => item.Color)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.MaterialId }) |
-        @Html.ActionLink("Details", "Detail", new { id = item.MaterialId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.MaterialId })
+        <input type="button" value="Detail" class="btn btn-default btn-xs" onclick="window.location = '@Url.Action("Detail", new {id = item.MaterialId})'" />
+        <input type="button" value="Edit" class="btn btn-warning btn-xs" onclick="window.location = '@Url.Action("Edit", new {id = item.MaterialId})'" />
+        <input type="button" value="Delete" class="btn btn-danger btn-xs" onclick="window.location = '@Url.Action("Delete", new {id = item.MaterialId})'" />
+        
     </td>
 </tr>
 }
 
 </table>
+<div>
+    <input type="button" value="Add New Material" class="btn btn-primary btn-lg" onclick="window.location = '@Url.Action("Create")'" />
+</div>

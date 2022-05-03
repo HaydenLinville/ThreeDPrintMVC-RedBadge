@@ -94,7 +94,7 @@ namespace ThreeDPrintMVC.Controllers
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Printer could not be updated due to reasons");
+            ModelState.AddModelError("", "Nothing has been changed. Change something and save or cancel.");
 
             return View(model);
 
