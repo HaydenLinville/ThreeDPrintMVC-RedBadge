@@ -29,18 +29,21 @@ namespace ThreeDPrintMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PrinterCreate model)
         {
-            var service = CreatePrinterService();
 
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
+
+            var service = CreatePrinterService();
               
             if(service.CreatePrinter(model))
             {
+                TempData["SaveResult"] = $"{model.PrinterModel} was created!";
+                
                 return RedirectToAction("Index");
             }
-
+            ModelState.AddModelError("", "Printer could not be created.");
 
             return View(model);
 
@@ -77,12 +80,21 @@ namespace ThreeDPrintMVC.Controllers
                 return View(model);
             }
 
+            if(id!=model.PrinterId)
+            {
+                ModelState.AddModelError("", "Id does not match");
+                return View(model);
+            }
+
             var srv = CreatePrinterService();
 
             if (srv.UpdatePrinter(model))
             {
+                TempData["SaveResult"] = $"{model.PrinterModel} was Updated!";
                 return RedirectToAction("Index");
             }
+
+            ModelState.AddModelError("", "Printer could not be updated due to reasons");
 
             return View(model);
 
@@ -106,7 +118,7 @@ namespace ThreeDPrintMVC.Controllers
             var srv = CreatePrinterService();
 
             srv.DeletePrinter(id);
-
+            TempData["SaveResult"] = "Printer Deleted!";
             return RedirectToAction("Index");
         }
 

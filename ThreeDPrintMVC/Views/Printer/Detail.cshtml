@@ -56,6 +56,16 @@
         <div>
             <p>@Html.ActionLink("Add Custom Settings", "Create", "Setting")</p>
         </div>
+        @if (TempData.ContainsKey("SettingSave"))
+        {
+
+            <div class="alert alert-success fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
+                @TempData["SettingSave"]
+            </div>
+        }
         <tr>
 
             <th>
@@ -85,33 +95,33 @@
         </tr>
         @foreach (var m in Model.Settings)
         {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelI => m.CustomSettingName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelI => m.MaterialType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelI => m.Color)
-        </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelI => m.CustomSettingName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelI => m.MaterialType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelI => m.Color)
+                </td>
 
-        <td>
-            @Html.DisplayFor(modelI => m.BedTemp)
-        </td>
+                <td>
+                    @Html.DisplayFor(modelI => m.BedTemp)
+                </td>
 
 
-        <td>
-            @Html.DisplayFor(modelI => m.MaterialTemp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelI => m.Speed)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", "Setting", new { id = m.SettingId}, null)|
-            @Html.ActionLink("Delete", "Delete", "Setting", new {id = m.SettingId}, null)
-        </td>
-    </tr>
+                <td>
+                    @Html.DisplayFor(modelI => m.MaterialTemp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelI => m.Speed)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Setting", new { id = m.SettingId }, null)|
+                    @Html.ActionLink("Delete", "Delete", "Setting", new { id = m.SettingId }, null)
+                </td>
+            </tr>
         }
 
     </table>

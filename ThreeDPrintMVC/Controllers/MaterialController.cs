@@ -38,6 +38,7 @@ namespace ThreeDPrintMVC.Controllers
 
             if(srv.CreateMaterial(model))
             {
+                TempData["SaveResult"] = $"{model.MaterialBrand} Created!";
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -69,11 +70,16 @@ namespace ThreeDPrintMVC.Controllers
                 return View(model);
             }
 
+            if(id != model.MaterialId)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                    return View(model); }
 
             var svr = MService();
 
             if (svr.UpdateMaterial(model))
             {
+                TempData["SaveResult"] = $"{model.MaterialBrand} Updated!";
                 return RedirectToAction("Index");
             }
 
@@ -93,7 +99,10 @@ namespace ThreeDPrintMVC.Controllers
         public ActionResult DeleteMaterial(int id)
         {
             var srv = MService();
+            var model = srv.GetMaterialById(id);
+            var name = model.MaterialBrand;
             srv.DeleteMaterial(id);
+            TempData["SaveResult"] = $"{name} Deleted!";
             return RedirectToAction("Index");
         }
 

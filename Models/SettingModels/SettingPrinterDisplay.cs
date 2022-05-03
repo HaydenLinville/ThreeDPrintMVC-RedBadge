@@ -11,6 +11,7 @@ namespace Models.SettingModels
     public class SettingPrinterDisplay
     {
         //maybe add materialbrand
+        
         [Display(Name = "Custom Setting Name")]
         public string CustomSettingName { get; set; }
         public int SettingId { get; set; }

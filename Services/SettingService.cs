@@ -73,6 +73,7 @@ namespace Services
 
                 return new SettingDetail
                 {
+                    PrinterId = setDe.PrinterId,
                     CustomSettingName = setDe.CustomSettingName,
                     SettingId = setDe.SettingId,
                     PrinterModel = setDe.Printer.PrinterModel,

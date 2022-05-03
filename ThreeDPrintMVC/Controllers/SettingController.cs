@@ -46,9 +46,12 @@ namespace ThreeDPrintMVC.Controllers
 
             if(src.CreateSetting(model))
             {
+                TempData["SettingSave"] = $"{model.CustomSettingName} was created!";
                 return RedirectToAction("Detail", "Printer", new {id =model.PrinterId});
-                //play around with later to figure out how to get to details with the int id. 
+                
             }
+            ModelState.AddModelError("", "Setting could not be created");
+
             return View(model);
         }
 
@@ -79,12 +82,18 @@ namespace ThreeDPrintMVC.Controllers
                 return View(model);
             }
 
+            if(id != model.SettingId)
+            {
+                ModelState.AddModelError("", "Id does not match");
+                return View(model);
+            }
+
             var srv = SService();
             if(srv.UpdateSetting(model))
             {
                 return RedirectToAction("Detail", "Printer", new { id = model.PrinterId });
             }
-
+            ModelState.AddModelError("", "Setting could not be updated.");
             return View(model);
         }
 
@@ -103,9 +112,12 @@ namespace ThreeDPrintMVC.Controllers
         public ActionResult DeleteSetting(int id)
         {
             var srv = SService();
+            var model = srv.GetSettingById(id);
+            var name = model.CustomSettingName;
+            var printerId = model.PrinterId;
             srv.DeleteSetting(id);
-
-            return RedirectToAction("Index", "Printer");
+            TempData["SettingSave"] = $"{name} Deleted!";
+            return RedirectToAction("Detail", "Printer", new {id = printerId});
         }
 
         public ActionResult Detail(int id)
