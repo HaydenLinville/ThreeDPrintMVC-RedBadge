@@ -50,6 +50,12 @@
         <dd>
             @Html.DisplayFor(model => model.HasHeatedBed)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model=> model.Image)
+        </dt>
+        <dd>
+            <img src="/Printer/RetrieveImage/@Model.PrinterId" alt="" height="100" width="200"/> 
+        </dd>
     </dl>
     <div class="dl-horizontal">
         <div class="col-md-offset-0 col-md-12 ">

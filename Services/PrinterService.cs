@@ -2,9 +2,11 @@
 using Models.PrinterModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Services
 {
@@ -17,9 +19,10 @@ namespace Services
               _userId = userId;
         }
 
-        public bool CreatePrinter(PrinterCreate model)
+        public bool CreatePrinter(HttpPostedFileBase file, PrinterCreate model)
         {
-            var entity = new Printer() { UserId = _userId, PrinterBrand = model.PrinterBrand, PrinterModel = model.PrinterModel, CanAutoLevel = model.CanAutoLevel, HasDualExtruder = model.HasDualExtruder, HasHeatedBed = model.HasHeatedBed, };
+            model.Image = ConvertToBytes(file);
+            var entity = new Printer() { UserId = _userId, PrinterBrand = model.PrinterBrand, PrinterModel = model.PrinterModel, CanAutoLevel = model.CanAutoLevel, HasDualExtruder = model.HasDualExtruder, HasHeatedBed = model.HasHeatedBed, Image = model.Image };
 
             using (var ctx = new ApplicationDbContext())
             {
@@ -27,7 +30,29 @@ namespace Services
                 return ctx.SaveChanges() == 1;
             }
         }
+        public byte[] GetImageFromDataBase(int Id)
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
 
+            var q = from temp in ctx.Printers where temp.PrinterId == Id select temp.Image;
+            byte[] cover = q.First();
+                return cover;
+            }
+        }
+        //public int UploadImageInDataBase(HttpPostedFileBase file, PrinterCreate model )
+        //{
+        //    model.Image = ConvertToBytes(file);
+        //    var Printer = new Printer { }
+        //}
+
+        public byte[] ConvertToBytes(HttpPostedFileBase image)
+        {
+            byte[] imageBytes = null;
+            BinaryReader reader = new BinaryReader(image.InputStream);
+            imageBytes = reader.ReadBytes((int)image.ContentLength);
+            return imageBytes;
+        }
 
         public PrinterDetail GetPrinterById(int id)
         {
@@ -43,6 +68,7 @@ namespace Services
                     CanAutoLevel = entity.CanAutoLevel,
                     HasDualExtruder = entity.HasDualExtruder,
                     HasHeatedBed = entity.HasHeatedBed,
+                    Image = entity.Image,
                     Settings = entity.Settings.Select(i => new Models.SettingModels.SettingPrinterDisplay
                     {
                        
