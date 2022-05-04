@@ -101,10 +101,12 @@ namespace Services
             }
         }
         
-        public bool UpdatePrinter(PrinterEdit model)
+        public bool UpdatePrinter(HttpPostedFileBase file, PrinterEdit model)
         {
+            model.Image = ConvertToBytes(file);
             using (var ctx = new ApplicationDbContext())
             {
+            
                 var entity = ctx.Printers.Single(e => e.UserId == _userId && e.PrinterId == model.PrinterId);
 
                 model.PrinterBand = entity.PrinterBrand;
@@ -112,10 +114,10 @@ namespace Services
                 model.HasHeatedBed = entity.HasHeatedBed;
                 model.HasDualExtruder = entity.HasDualExtruder;
                 model.CanAutoLevel = entity.CanAutoLevel;
-
+                model.Image = entity.Image;
                 //check 
-
-                return ctx.SaveChanges() == 1;
+                int changesMade = ctx.SaveChanges();
+                return changesMade== 1;
             }
         }
 

@@ -101,10 +101,10 @@ namespace ThreeDPrintMVC.Controllers
                 ModelState.AddModelError("", "Id does not match");
                 return View(model);
             }
-
+            HttpPostedFileBase file = Request.Files["ImageData"];
             var srv = CreatePrinterService();
 
-            if (srv.UpdatePrinter(model))
+            if (srv.UpdatePrinter(file,model))
             {
                 TempData["SaveResult"] = $"{model.PrinterModel} was Updated!";
                 return RedirectToAction("Index");
