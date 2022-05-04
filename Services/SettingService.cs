@@ -17,14 +17,15 @@ namespace Services
             _userId = userId;
         }
 
-        public bool CreateSetting(SettingCreate model)
+        public bool CreateSetting(SettingCreate model, int id)
         {
+           
             var entity = new Setting()
             {
                 UserId = _userId,
                 CustomSettingName = model.CustomSettingName,
                 MaterialId = model.MaterialId,
-                PrinterId = model.PrinterId,
+                PrinterId = id,
                 BedTemp = model.BedTemp,
                 MaterialTemp = model.MaterialTemp,
                 Speed = model.Speed,
@@ -32,7 +33,7 @@ namespace Services
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Settings.Add(entity);
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() >= 1;
             }
         }
 

@@ -36,8 +36,9 @@ namespace ThreeDPrintMVC.Controllers
         {
             var ps = CreatePrinterService();
             var ms = MService();
-            var n = ps.GetPrinterById(id);
-            ViewBag.PrinterId = n.PrinterId;
+            var printer = ps.GetPrinterById(id);
+            var pId = printer.PrinterId;
+            ViewBag.PrinterId = printer.PrinterId;
             ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialBrand");
 
             if(!ModelState.IsValid)
@@ -47,10 +48,10 @@ namespace ThreeDPrintMVC.Controllers
 
             var src = SService();
 
-            if(src.CreateSetting(model))
+            if(src.CreateSetting(model, pId))
             {
                 TempData["SettingSave"] = $"{model.CustomSettingName} was created!";
-                return RedirectToAction("Detail", "Printer", new {id =model.PrinterId});
+                return RedirectToAction("Detail", "Printer", new {id =pId});
                 
             }
             ModelState.AddModelError("", "Setting could not be created");
