@@ -109,12 +109,14 @@ namespace Services
             
                 var entity = ctx.Printers.Single(e => e.UserId == _userId && e.PrinterId == model.PrinterId);
 
-                model.PrinterBand = entity.PrinterBrand;
-                model.PrinterModel = entity.PrinterModel;
-                model.HasHeatedBed = entity.HasHeatedBed;
-                model.HasDualExtruder = entity.HasDualExtruder;
-                model.CanAutoLevel = entity.CanAutoLevel;
-                model.Image = entity.Image;
+                entity.PrinterBrand = model.PrinterBand;
+                entity.PrinterModel = model.PrinterModel;
+                entity.HasHeatedBed = model.HasHeatedBed;
+                entity.HasDualExtruder = model.HasDualExtruder;
+                entity.CanAutoLevel = model.CanAutoLevel;
+                entity.Image = model.Image;
+                
+                
                 //check 
                 int changesMade = ctx.SaveChanges();
                 return changesMade== 1;
