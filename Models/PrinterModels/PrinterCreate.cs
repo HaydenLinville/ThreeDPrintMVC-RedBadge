@@ -19,6 +19,7 @@ namespace Models.PrinterModels
         public bool CanAutoLevel { get; set; }
         [Display(Name = "Heated Bed")]
         public bool HasHeatedBed { get; set; }
+        public byte[] Image { get; set; }
 
     }
 }

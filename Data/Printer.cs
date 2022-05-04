@@ -24,6 +24,8 @@ namespace Data
         [Required]
         public bool HasHeatedBed { get; set; }
 
+        public byte[] Image { get; set; }
+
         public virtual List<Setting> Settings { get; set; }
     }
 }

@@ -29,15 +29,18 @@ namespace ThreeDPrintMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PrinterCreate model)
         {
+           
 
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
+            HttpPostedFileBase file = Request.Files["ImageData"];
             var service = CreatePrinterService();
+            
               
-            if(service.CreatePrinter(model))
+            if(service.CreatePrinter(file,model))
             {
                 TempData["SaveResult"] = $"{model.PrinterModel} was created!";
                 
@@ -49,7 +52,20 @@ namespace ThreeDPrintMVC.Controllers
 
         }
 
-
+        public ActionResult RetrieveImage(int id)
+        {
+            var s = CreatePrinterService();
+            byte[] cover = s.GetImageFromDataBase(id);
+            if(cover != null)
+            {
+                return File(cover, "image/jpg");
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
 
         public ActionResult Detail(int id)
         {
