@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public enum MaterialTypes { PLA, ABS, PETG, PVA, Nylon}
+    public enum MaterialTypes { PLA, ABS, PETG, PVA, Nylon }
     public class Material
     {
         [Key]
@@ -20,6 +20,7 @@ namespace Data
         public MaterialTypes MaterialType { get; set; }
         [Required]
         public string Color { get; set; }
-    
+
+        
     }
 }

@@ -82,8 +82,8 @@ namespace ThreeDPrintMVC.Controllers
             var srv = CreatePrinterService();
 
             var detailModel = srv.GetPrinterById(id);
-            var editModel = new PrinterEdit { PrinterId = detailModel.PrinterId, CanAutoLevel = detailModel.CanAutoLevel, PrinterModel = detailModel.PrinterModel, HasDualExtruder = detailModel.HasDualExtruder, HasHeatedBed = detailModel.HasHeatedBed, PrinterBand = detailModel.PrinterBrand };
-
+            var editModel = new PrinterEdit { PrinterId = detailModel.PrinterId, CanAutoLevel = detailModel.CanAutoLevel, PrinterModel = detailModel.PrinterModel, HasDualExtruder = detailModel.HasDualExtruder, HasHeatedBed = detailModel.HasHeatedBed, PrinterBand = detailModel.PrinterBrand, CanUpgrade = detailModel.CanUpgrade, HasCamera = detailModel.HasCamera, HasWifi = detailModel.HasWifi, };
+            //has not added img 
             return View(editModel);
         }
 

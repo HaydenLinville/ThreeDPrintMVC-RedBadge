@@ -6,13 +6,23 @@
 
 <h2>Create New Material</h2>
 
+@if (TempData.ContainsKey("NoMaterial"))
+{
+    <div class="alert alert-danger fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["NoMaterial"]
+    </div>
+}
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

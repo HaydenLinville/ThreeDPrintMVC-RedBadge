@@ -19,6 +19,13 @@ namespace Models.PrinterModels
         public bool CanAutoLevel { get; set; }
         [Display(Name = "Heated Bed")]
         public bool HasHeatedBed { get; set; }
+        [Display(Name ="Wifi")]
+        public bool HasWifi { get; set; }
+        [Display(Name ="Upgrade")]
+        public bool CanUpgrade { get; set; }
+        [Display(Name ="Camera")]
+        public bool HasCamera { get; set; }
+
         public byte[] Image { get; set; }
 
     }

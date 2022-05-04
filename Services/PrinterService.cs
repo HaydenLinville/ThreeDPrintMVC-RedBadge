@@ -22,7 +22,7 @@ namespace Services
         public bool CreatePrinter(HttpPostedFileBase file, PrinterCreate model)
         {
             model.Image = ConvertToBytes(file);
-            var entity = new Printer() { UserId = _userId, PrinterBrand = model.PrinterBrand, PrinterModel = model.PrinterModel, CanAutoLevel = model.CanAutoLevel, HasDualExtruder = model.HasDualExtruder, HasHeatedBed = model.HasHeatedBed, Image = model.Image };
+            var entity = new Printer() { UserId = _userId, PrinterBrand = model.PrinterBrand, PrinterModel = model.PrinterModel, CanAutoLevel = model.CanAutoLevel, HasDualExtruder = model.HasDualExtruder, HasHeatedBed = model.HasHeatedBed, HasWifi = model.HasWifi, HasCamera = model.HasCamera, CanUpgrade =model.CanUpgrade, Image = model.Image };
 
             using (var ctx = new ApplicationDbContext())
             {
@@ -68,6 +68,9 @@ namespace Services
                     CanAutoLevel = entity.CanAutoLevel,
                     HasDualExtruder = entity.HasDualExtruder,
                     HasHeatedBed = entity.HasHeatedBed,
+                    CanUpgrade = entity.CanUpgrade,
+                    HasCamera = entity.HasCamera,
+                    HasWifi = entity.HasWifi,
                     Image = entity.Image,
                     Settings = entity.Settings.Select(i => new Models.SettingModels.SettingPrinterDisplay
                     {
@@ -114,12 +117,14 @@ namespace Services
                 entity.HasHeatedBed = model.HasHeatedBed;
                 entity.HasDualExtruder = model.HasDualExtruder;
                 entity.CanAutoLevel = model.CanAutoLevel;
+                entity.CanUpgrade = model.CanUpgrade;
+                entity.HasWifi = model.HasWifi;
+                entity.HasCamera = model.HasCamera;
                 entity.Image = model.Image;
                 
                 
-                //check 
-                int changesMade = ctx.SaveChanges();
-                return changesMade== 1;
+               
+                return ctx.SaveChanges()== 1;
             }
         }
 

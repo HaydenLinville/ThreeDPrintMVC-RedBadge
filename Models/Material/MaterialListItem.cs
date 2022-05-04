@@ -16,5 +16,6 @@ namespace Models.Material
         public MaterialTypes MaterialType { get; set; }
         [Display(Name ="Color")]
         public string Color { get; set; }
+        
     }
 }

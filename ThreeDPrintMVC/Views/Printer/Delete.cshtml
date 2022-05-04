@@ -52,6 +52,29 @@
             @Html.DisplayFor(model => model.HasHeatedBed)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.HasWifi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasWifi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CanUpgrade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CanUpgrade)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HasCamera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasCamera)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm())
@@ -59,7 +82,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" />
+            <input type="submit" value="Delete" class="btn btn-danger" />
             <input type="button" value="Cancel" class="btn btn-default" onclick="goPrev()" />
             <script>
                 function goPrev() { window.history.back(); }
@@ -67,8 +90,6 @@
 
         </div>
         <br />
-        <div class="form-actions">
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+        
     }
 </div>
