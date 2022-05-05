@@ -18,5 +18,7 @@ namespace Models.Material
         [Display(Name = "Color")]
         public string Color { get; set; }
 
+        public byte[] Image { get; set; }
+
     }
 }

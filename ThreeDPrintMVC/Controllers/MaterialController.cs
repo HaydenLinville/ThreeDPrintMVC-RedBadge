@@ -29,20 +29,39 @@ namespace ThreeDPrintMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(MaterialCreate model)
         {
+
             if(!ModelState.IsValid)
             {
                 return View(model);
             }
 
+            HttpPostedFileBase file = Request.Files["ImageData"];
             var srv = MService();
 
-            if(srv.CreateMaterial(model))
+            if(srv.CreateMaterial(file,model))
             {
                 TempData["SaveResult"] = $"{model.MaterialBrand} Created!";
                 return RedirectToAction("Index");
             }
             return View(model);
         }
+
+        public ActionResult RetrieveMImage(int id)
+        {
+            var mService = MService();
+            byte[] cover = mService.GetImageFromDataBase(id);
+            
+            if(cover!= null)
+            {
+                return File(cover, "image/jpg");
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
 
         public ActionResult Detail(int id)
         {

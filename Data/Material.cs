@@ -21,6 +21,8 @@ namespace Data
         [Required]
         public string Color { get; set; }
 
-        
+        public byte[] Image { get; set; }
+
+
     }
 }

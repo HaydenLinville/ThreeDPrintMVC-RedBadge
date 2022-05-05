@@ -16,13 +16,14 @@ namespace Services
 
         public PrinterService(Guid userId)
         {
-              _userId = userId;
+            _userId = userId;
         }
 
         public bool CreatePrinter(HttpPostedFileBase file, PrinterCreate model)
         {
             model.Image = ConvertToBytes(file);
-            var entity = new Printer() { UserId = _userId, PrinterBrand = model.PrinterBrand, PrinterModel = model.PrinterModel, CanAutoLevel = model.CanAutoLevel, HasDualExtruder = model.HasDualExtruder, HasHeatedBed = model.HasHeatedBed, HasWifi = model.HasWifi, HasCamera = model.HasCamera, CanUpgrade =model.CanUpgrade, Image = model.Image };
+
+            var entity = new Printer() { UserId = _userId, PrinterBrand = model.PrinterBrand, PrinterModel = model.PrinterModel, CanAutoLevel = model.CanAutoLevel, HasDualExtruder = model.HasDualExtruder, HasHeatedBed = model.HasHeatedBed, HasWifi = model.HasWifi, HasCamera = model.HasCamera, CanUpgrade = model.CanUpgrade, Image = model.Image };
 
             using (var ctx = new ApplicationDbContext())
             {
@@ -32,11 +33,11 @@ namespace Services
         }
         public byte[] GetImageFromDataBase(int Id)
         {
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
 
-            var q = from temp in ctx.Printers where temp.PrinterId == Id select temp.Image;
-            byte[] cover = q.First();
+                var q = from temp in ctx.Printers where temp.PrinterId == Id select temp.Image;
+                byte[] cover = q.First();
                 return cover;
             }
         }
@@ -74,7 +75,7 @@ namespace Services
                     Image = entity.Image,
                     Settings = entity.Settings.Select(i => new Models.SettingModels.SettingPrinterDisplay
                     {
-                       
+
                         CustomSettingName = i.CustomSettingName,
                         SettingId = i.SettingId,
                         BedTemp = i.BedTemp,
@@ -93,7 +94,7 @@ namespace Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var quary = ctx.Printers.Where(e => e.UserId == _userId).Select(e=>new PrinterListItem
+                var quary = ctx.Printers.Where(e => e.UserId == _userId).Select(e => new PrinterListItem
                 {
                     PrinterId = e.PrinterId,
                     PrinterBrand = e.PrinterBrand,
@@ -103,13 +104,13 @@ namespace Services
                 return quary.ToArray();
             }
         }
-        
+
         public bool UpdatePrinter(HttpPostedFileBase file, PrinterEdit model)
         {
             model.Image = ConvertToBytes(file);
             using (var ctx = new ApplicationDbContext())
             {
-            
+
                 var entity = ctx.Printers.Single(e => e.UserId == _userId && e.PrinterId == model.PrinterId);
 
                 entity.PrinterBrand = model.PrinterBand;
@@ -121,10 +122,10 @@ namespace Services
                 entity.HasWifi = model.HasWifi;
                 entity.HasCamera = model.HasCamera;
                 entity.Image = model.Image;
-                
-                
-               
-                return ctx.SaveChanges()== 1;
+
+
+
+                return ctx.SaveChanges() == 1;
             }
         }
 

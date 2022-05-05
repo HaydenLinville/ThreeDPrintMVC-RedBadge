@@ -2,9 +2,11 @@
 using Models.Material;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Services
 {
@@ -17,14 +19,17 @@ namespace Services
             _userId = userId;
         }
 
-        public bool CreateMaterial(MaterialCreate model)
+        public bool CreateMaterial(HttpPostedFileBase file, MaterialCreate model)
         {
+            model.Image = ConvertToBytes(file);
+
             var entity = new Material()
             {
                 UserId = _userId,
                 MaterialType = model.MaterialType,
                 Color = model.Color,
                 MaterialBrand = model.MaterialBrand,
+                Image = model.Image
 
             };
 
@@ -34,9 +39,27 @@ namespace Services
 
                 return ctx.SaveChanges() == 1;
             }
-
-
         }
+
+        public byte[] GetImageFromDataBase(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var q = from temp in ctx.Materials where temp.MaterialId == id select temp.Image;
+                byte[] cover = q.First();
+                return cover;
+            }
+        }
+
+
+        public byte[] ConvertToBytes(HttpPostedFileBase image)
+        {
+            byte[] imageBytes = null;
+            BinaryReader reader = new BinaryReader(image.InputStream);
+            imageBytes = reader.ReadBytes((int)image.ContentLength);
+            return imageBytes;
+        }
+
 
         public MaterialDetail GetMaterialById(int id)
         {
@@ -44,7 +67,7 @@ namespace Services
             {
                 var material = ctx.Materials.Single(e => e.UserId == _userId && e.MaterialId == id);
 
-                return new MaterialDetail { MaterialId = material.MaterialId, MaterialBrand = material.MaterialBrand, Color = material.Color, MaterialType = material.MaterialType };
+                return new MaterialDetail { MaterialId = material.MaterialId, MaterialBrand = material.MaterialBrand, Color = material.Color, MaterialType = material.MaterialType, Image = material.Image };
             }
         }
 
@@ -59,7 +82,7 @@ namespace Services
         }
 
 
-        
+
 
         public bool UpdateMaterial(MaterialEdit model)
         {
@@ -75,7 +98,7 @@ namespace Services
             }
         }
 
-        public bool DeleteMaterial (int id)
+        public bool DeleteMaterial(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
