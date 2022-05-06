@@ -9,6 +9,16 @@
 <div>
 
     <hr />
+
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+            <h4 class="card-title">@Html.DisplayFor(model=>model.PrinterBrand)</h4>
+            <p class="card-text">@Html.DisplayNameFor(model => model.HasHeatedBed)  @Html.DisplayFor(model=> model.HasHeatedBed)</p>
+            <p class="card-text"></p>
+        </div>
+    </div>
+
     <dl class="dl-horizontal">
 
         <dt>
