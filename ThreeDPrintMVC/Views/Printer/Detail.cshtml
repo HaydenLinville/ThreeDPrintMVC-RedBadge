@@ -10,97 +10,33 @@
 
     <hr />
 
-    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-        <div class="card-header">Header</div>
+    <div class="card text-white bg-secondary mb-3 border-info" style="max-width: 20rem;">
+        <div class="card-header bg-dark text-light">Printer Info:</div>
+        @if (Model.Image != null)
+        {
+            <img class="card-img-top" src="/Printer/RetrieveImage/@Model.PrinterId" alt="" />
+
+        }
         <div class="card-body">
-            <h4 class="card-title">@Html.DisplayFor(model=>model.PrinterBrand)</h4>
-            <p class="card-text">@Html.DisplayNameFor(model => model.HasHeatedBed)  @Html.DisplayFor(model=> model.HasHeatedBed)</p>
-            <p class="card-text"></p>
+            <h4 class="card-title">@Html.DisplayNameFor(model=>model.PrinterBrand): @Html.DisplayFor(model => model.PrinterBrand)</h4>
+            <p class="card-text">@Html.DisplayNameFor(model => model.PrinterModel):  @Html.DisplayFor(model => model.PrinterModel)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.HasDualExtruder):  @Html.DisplayFor(model => model.HasDualExtruder)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.CanAutoLevel):  @Html.DisplayFor(model => model.CanAutoLevel)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.HasWifi): @Html.DisplayFor(model => model.HasWifi)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.CanUpgrade):  @Html.DisplayFor(model => model.CanUpgrade)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.HasCamera):  @Html.DisplayFor(model => model.HasCamera)</p>
+        </div>
+        <div class="card-footer">
+
+            <input type="button" value="Edit" class="btn btn-outline-warning" onclick="window.location= '@Url.Action("Edit", "Printer", new {id = Model.PrinterId}, null )'" />
+            <input type="button" value="Delete" class="btn btn-outline-danger" onclick="window.location= '@Url.Action("Delete", "Printer", new {id = Model.PrinterId})'" />
+            <input type="button" value="Back to Printers" class="btn btn-light" onclick="window.location= '@Url.Action("Index", "Printer")'" />
         </div>
     </div>
 
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PrinterBrand)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PrinterBrand)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PrinterModel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PrinterModel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HasDualExtruder)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HasDualExtruder)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CanAutoLevel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CanAutoLevel)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HasHeatedBed)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HasHeatedBed)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HasWifi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HasWifi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CanUpgrade)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CanUpgrade)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.HasCamera)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HasCamera)
-        </dd>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        @if (Model.Image != null)
-        {
-
-            <dd>
-                <img src="/Printer/RetrieveImage/@Model.PrinterId" alt="" class="img-fluid" height="100" width="200" />
-            </dd>
-        }
-    </dl>
+   
     <div class="dl-horizontal">
         <div class="col-md-offset-0 col-md-12 ">
-            <input type="button" value="Edit" class="btn btn-warning" onclick="window.location= '@Url.Action("Edit", "Printer", new {id = Model.PrinterId}, null )'" />
-            <input type="button" value="Delete" class="btn btn-danger" onclick="window.location= '@Url.Action("Delete", "Printer", new {id = Model.PrinterId})'" />
-            <input type="button" value="Back to Printers" class="btn btn-default" onclick="window.location= '@Url.Action("Index", "Printer")'" />
         </div>
 
         <br />
