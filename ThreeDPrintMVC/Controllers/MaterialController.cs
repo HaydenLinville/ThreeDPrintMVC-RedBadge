@@ -46,6 +46,12 @@ namespace ThreeDPrintMVC.Controllers
             return View(model);
         }
 
+        public ActionResult Info()
+        {
+            return View();
+        }
+
+
         public ActionResult RetrieveMImage(int id)
         {
             var mService = MService();
