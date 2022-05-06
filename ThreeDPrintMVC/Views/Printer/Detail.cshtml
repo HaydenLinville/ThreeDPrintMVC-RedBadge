@@ -37,24 +37,24 @@
     </div>
 
 
-    <div>
+    @if (TempData.ContainsKey("SettingSave"))
+    {
 
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            @TempData["SettingSave"]
+        </div>
+    }
+
+    <div>
         @if (Model.Settings.Count() != 0)
         {
 
             <table class="table table-hover border-dark">
                 <h2 class="text-white">Custom Settings for @Model.PrinterModel.ToString(): </h2>
 
-                @if (TempData.ContainsKey("SettingSave"))
-                {
-
-                    <div class="alert alert-success fade in" role="alert">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
-                        @TempData["SettingSave"]
-                    </div>
-                }
                 <thead class="">
                     <tr class="table-dark">
 
