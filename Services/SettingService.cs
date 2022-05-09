@@ -60,7 +60,7 @@ namespace Services
 
 
 
-        public bool UpdateSetting(SettingEdit model)
+        public bool UpdateSetting(SettingEdit model, int printerId)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -68,7 +68,7 @@ namespace Services
 
                 entity.CustomSettingName = model.CustomSettingName;
                 entity.MaterialId = model.MaterialId;
-                entity.PrinterId = model.PrinterId;
+                entity.PrinterId = printerId;
                 entity.MaterialTemp = model.MaterialTemp;
                 entity.BedTemp = model.BedTemp;
                 entity.Speed = model.Speed;

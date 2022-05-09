@@ -119,7 +119,7 @@ namespace ThreeDPrintMVC.Controllers
             return View(model);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int settingId, int printerId)
         {
             var ps = CreatePrinterService();
             var ms = MService();
@@ -129,14 +129,23 @@ namespace ThreeDPrintMVC.Controllers
             ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
 
             var srv = SService();
-            var setting = srv.GetSettingById(id);
-            var model = new SettingEdit { CustomSettingName = setting.CustomSettingName, BedTemp = setting.BedTemp, MaterialId = setting.MaterialId, PrinterId = setting.PrinterId, MaterialTemp = setting.MaterialTemp, SettingId = setting.SettingId, Speed = setting.Speed };
+            var setting = srv.GetSettingById(settingId);
+            var model = new SettingEdit 
+            { 
+                CustomSettingName = setting.CustomSettingName, 
+                BedTemp = setting.BedTemp, 
+                MaterialId = setting.MaterialId, 
+                PrinterId = setting.PrinterId, 
+                MaterialTemp = setting.MaterialTemp, 
+                SettingId = setting.SettingId, 
+                Speed = setting.Speed
+            };
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, SettingEdit model)
+        public ActionResult Edit(int settingId, int printerId, SettingEdit model)
         {
             var ps = CreatePrinterService();
             var ms = MService();
@@ -150,15 +159,16 @@ namespace ThreeDPrintMVC.Controllers
                 return View(model);
             }
 
-            if (id != model.SettingId)
+            if (settingId != model.SettingId)
             {
                 ModelState.AddModelError("", "Id does not match");
                 return View(model);
             }
 
             var srv = SService();
-            if (srv.UpdateSetting(model))
+            if (srv.UpdateSetting(model, printerId))
             {
+                TempData["SettingUpdate"] = $"You updated {model.CustomSettingName}";
                 return RedirectToAction("Detail", "Printer", new { id = model.PrinterId });
             }
             ModelState.AddModelError("", "Setting could not be updated.");
