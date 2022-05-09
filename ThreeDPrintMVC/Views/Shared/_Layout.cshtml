@@ -24,9 +24,9 @@
                     @if (User.Identity.IsAuthenticated)
                     {
 
-                        <li class="nav-item active m-2">@Html.ActionLink("Printers", "Index", "Printer", new { area = "" }, new { @class = "nav-link text-white" })</li>
-                        <li class="nav-item m-2">@Html.ActionLink("Materials", "Index", "Material", new { area = "" }, new { @class = "nav-link text-white" })</li>
-                        <li class="nav-item m-2">@Html.ActionLink("Create Settings", "Create", "Setting", new { area = "" }, new { @class = "nav-link text-white" })</li>
+                        <li class="nav-item active m-2">@Html.ActionLink("Printers", "Index", "Printer", new { area = "" }, new { @class = "nav-link text-success" })</li>
+                        <li class="nav-item m-2">@Html.ActionLink("Materials", "Index", "Material", new { area = "" }, new { @class = "nav-link text-warning" })</li>
+                        <li class="nav-item m-2">@Html.ActionLink("Create Settings", "Create", "Setting", new { area = "" }, new { @class = "nav-link text-info" })</li>
                     }
                 </ul>
             </div>

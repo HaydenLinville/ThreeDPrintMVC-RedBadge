@@ -106,6 +106,8 @@ namespace Services
                     MaterialTemp = setDe.MaterialTemp,
                     BedTemp = setDe.BedTemp,
                     Speed = setDe.Speed,
+                    Printer= setDe.Printer.PrinterBrand + " " + setDe.Printer.PrinterModel,
+                    Material = setDe.Material.MaterialBrand + " " + setDe.Material.MaterialType.ToString() + " " + setDe.Material.Color
                 };
             }
         }

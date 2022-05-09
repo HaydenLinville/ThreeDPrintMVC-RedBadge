@@ -22,8 +22,6 @@ namespace ThreeDPrintMVC.Controllers
         {
             var ps = CreatePrinterService();
             var ms = MService();
-            //just added
-
             var mSelectList = ms.MaterialSelectList();
 
             if(ms.GetMaterials().Count() == 0)
@@ -77,6 +75,7 @@ namespace ThreeDPrintMVC.Controllers
             var ps = CreatePrinterService();
             var ms = MService();
             var mSelectList = ms.MaterialSelectList();
+            var pSelectList = ps.PrinterSelectList();
             if(ps.GetPrinters().Count()==0)
             {
                 TempData["NoPrinter"] = "You need to have at least one printer to create Custom Settings";
@@ -91,7 +90,7 @@ namespace ThreeDPrintMVC.Controllers
 
 
             ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
-            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterBrand");
+            ViewBag.PrinterId = new SelectList(pSelectList, "PrinterId", "PrinterInfo");
             return View();
         }
 
@@ -102,8 +101,9 @@ namespace ThreeDPrintMVC.Controllers
             var ps = CreatePrinterService();
             var ms = MService();
             var mSelectList = ms.MaterialSelectList();
+            var pSelectList = ps.PrinterSelectList();
             ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
-            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterBrand");
+            ViewBag.PrinterId = new SelectList(pSelectList, "PrinterId", "PrinterInfo");
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -124,7 +124,8 @@ namespace ThreeDPrintMVC.Controllers
             var ps = CreatePrinterService();
             var ms = MService();
             var mSelectList = ms.MaterialSelectList();
-            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterModel");
+            var pSelectList = ps.PrinterSelectList();
+            ViewBag.PrinterId = new SelectList(pSelectList, "PrinterId", "PrinterInfo");
             ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
 
             var srv = SService();
@@ -139,8 +140,9 @@ namespace ThreeDPrintMVC.Controllers
         {
             var ps = CreatePrinterService();
             var ms = MService();
+            var pSelectList = ps.PrinterSelectList();
             var mSelectList = ms.MaterialSelectList();
-            ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterModel");
+            ViewBag.PrinterId = new SelectList(pSelectList, "PrinterId", "PrinterInfo");
             ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
 
             if (!ModelState.IsValid)

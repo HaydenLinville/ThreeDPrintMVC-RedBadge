@@ -9,9 +9,9 @@ namespace Models.SettingModels
 {
     public class SettingCreate
     {
-        [Display(Name ="Custom Setting Name")]
+        [Display(Name ="Your Setting Name")]
         public string CustomSettingName { get; set; }
-        [Display(Name= "Material Brand")]
+        [Display(Name= "Material")]
         public int MaterialId { get; set; }
 
         [Display(Name= "Printer")]

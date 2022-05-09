@@ -55,7 +55,7 @@ namespace Services
             return imageBytes;
         }
 
-        public IEnumerable<PrinterListSettingItem> MaterialSelectList()
+        public IEnumerable<PrinterListSettingItem> PrinterSelectList()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -112,6 +112,7 @@ namespace Services
                     PrinterId = e.PrinterId,
                     PrinterBrand = e.PrinterBrand,
                     PrinterModel = e.PrinterModel,
+                    Image = e.Image,
                 });
 
                 return quary.ToArray();

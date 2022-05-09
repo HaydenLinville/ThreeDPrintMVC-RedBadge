@@ -28,7 +28,10 @@ namespace Models.SettingModels
         
         public double BedTemp { get; set; }
         [Display(Name = "Speed mm/s")]
-        
+
         public double Speed { get; set; }
+
+        public string Printer { get; set; }
+        public string Material { get; set; }
     }
 }

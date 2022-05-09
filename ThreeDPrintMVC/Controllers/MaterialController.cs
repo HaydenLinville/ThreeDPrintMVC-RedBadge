@@ -80,7 +80,7 @@ namespace ThreeDPrintMVC.Controllers
         {
             var srv = MService();
             var edit = srv.GetMaterialById(id);
-            var model = new MaterialEdit { MaterialId = edit.MaterialId, Color = edit.Color, MaterialBrand = edit.MaterialBrand, MaterialType = edit.MaterialType };
+            var model = new MaterialEdit { MaterialId = edit.MaterialId, Color = edit.Color, MaterialBrand = edit.MaterialBrand, MaterialType = edit.MaterialType, Image = edit.Image };
             return View(model);
 
         }
@@ -100,9 +100,10 @@ namespace ThreeDPrintMVC.Controllers
                 ModelState.AddModelError("", "Id Mismatch");
                     return View(model); }
 
+            HttpPostedFileBase file = Request.Files["ImageData"];
             var svr = MService();
 
-            if (svr.UpdateMaterial(model))
+            if (svr.UpdateMaterial(file,model))
             {
                 TempData["SaveResult"] = $"{model.MaterialBrand} Updated!";
                 return RedirectToAction("Index");

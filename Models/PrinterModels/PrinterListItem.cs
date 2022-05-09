@@ -14,6 +14,7 @@ namespace Models.PrinterModels
         public string PrinterBrand { get; set; }
         [Display(Name = "Model")]
         public string PrinterModel { get; set; }
+        public byte[] Image { get; set; }
 
     }
 }

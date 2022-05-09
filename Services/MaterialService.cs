@@ -86,7 +86,7 @@ namespace Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var quary = ctx.Materials.Where(e => e.UserId == _userId).Select(e => new MaterialListItem { MaterialBrand = e.MaterialBrand, MaterialId = e.MaterialId, Color = e.Color, MaterialType = e.MaterialType });
+                var quary = ctx.Materials.Where(e => e.UserId == _userId).Select(e => new MaterialListItem { MaterialBrand = e.MaterialBrand, MaterialId = e.MaterialId, Color = e.Color, MaterialType = e.MaterialType, Image = e.Image });
 
                 return quary.ToArray();
             }
@@ -95,8 +95,9 @@ namespace Services
 
 
 
-        public bool UpdateMaterial(MaterialEdit model)
+        public bool UpdateMaterial(HttpPostedFileBase file, MaterialEdit model)
         {
+            model.Image = ConvertToBytes(file);
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Materials.Single(e => e.UserId == _userId && e.MaterialId == model.MaterialId);
@@ -104,6 +105,7 @@ namespace Services
                 entity.Color = model.Color;
                 entity.MaterialBrand = model.MaterialBrand;
                 entity.MaterialType = model.MaterialType;
+                entity.Image = model.Image;
 
                 return ctx.SaveChanges() == 1;
             }

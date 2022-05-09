@@ -10,20 +10,20 @@
     <div>
 
         <h2 class="text-white">@Model.MaterialBrand.ToString():</h2>
-        <div class="card text-white bg-secondary mb-3 border-info" style="max-width: 20rem;">
+        <div class="card text-warning bg-secondary border-warning mb-3" style="max-width: 20rem;">
             <div class="card-header bg-dark text-light">Material Info:</div>
             @if (Model.Image != null)
             {
                 <img class="card-img-top" src="/Material/RetrieveMImage/@Model.MaterialId" alt="" />
 
             }
-            <div class="card-body">
-                <h4 class="card-title">@Html.DisplayNameFor(model => model.MaterialBrand): @Html.DisplayFor(model => model.MaterialBrand)</h4>
+            <div class="card-body ">
+                <p class="card-title">@Html.DisplayNameFor(model => model.MaterialBrand): @Html.DisplayFor(model => model.MaterialBrand)</p>
                 <p class="card-text">@Html.DisplayNameFor(model => model.MaterialType):  @Html.DisplayFor(model => model.MaterialType)</p>
                 <p class="card-text">@Html.DisplayNameFor(model => model.Color):  @Html.DisplayFor(model => model.Color)</p>
 
             </div>
-            <div class="card-footer">
+            <div class="card-footer bg-dark">
 
                 <input type="button" value="Edit" class="btn btn-warning" onclick="window.location= '@Url.Action("Edit", "Material", new {id = Model.MaterialId}, null )'" />
                 <input type="button" value="Delete" class="btn btn-outline-danger" onclick="window.location= '@Url.Action("Delete", "Material", new {id = Model.MaterialId})'" />

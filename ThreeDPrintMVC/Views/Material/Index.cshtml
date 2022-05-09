@@ -4,27 +4,23 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Your Material</h2>
+<h2 class="text-white">Your Material</h2>
 
-<p>
-    
-    
-</p>
-@if(TempData.ContainsKey("SaveResult"))
-            {
-                <div class="alert alert-success fade-in" role="alert" >
-                    <button type="button" class="close" data-dismiss="alert">
-                        <span>&times;</span>
-                    </button>
-                    @TempData["SaveResult"]
-                </div>
-            }
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success fade-in" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
 <div>
-    
+
 </div>
 
-<table class="table">
-    <tr>
+<table class="table table-hover border-dark">
+    <tr class="table-dark text-dark">
         <th>
             @Html.DisplayNameFor(model => model.MaterialBrand)
         </th>
@@ -34,28 +30,44 @@
         <th>
             @Html.DisplayNameFor(model => model.Color)
         </th>
-        <th></th>
+        <th>
+            Image
+        </th>
+        <th>
+            Update/Delete
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.MaterialBrand)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.MaterialType)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Color)
-    </td>
-    <td>
-        <input type="button" value="Detail" class="btn btn-default btn-xs" onclick="window.location = '@Url.Action("Detail", new {id = item.MaterialId})'" />
-        <input type="button" value="Edit" class="btn btn-warning btn-xs" onclick="window.location = '@Url.Action("Edit", new {id = item.MaterialId})'" />
-        <input type="button" value="Delete" class="btn btn-danger btn-xs" onclick="window.location = '@Url.Action("Delete", new {id = item.MaterialId})'" />
-        
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr class="table-warning">
+            <td>
+                @Html.DisplayFor(modelItem => item.MaterialBrand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaterialType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            @if (item.Image.Count() != 0)
+            {
+                <td>
+                    <img class="img-thumbnail" width="60" height="60" src="/Material/RetrieveMImage/@item.MaterialId" alt=""/>
+                </td>
+            }
+                else
+                {
+                    <td>N/A</td>
+                }
+            <td>
+                <input type="button" value="Detail" class="btn btn-secondary btn-xs" onclick="window.location = '@Url.Action("Detail", new {id = item.MaterialId})'" />
+                <input type="button" value="Edit" class="btn btn-warning btn-xs" onclick="window.location = '@Url.Action("Edit", new {id = item.MaterialId})'" />
+                <input type="button" value="Delete" class="btn btn-danger btn-xs" onclick="window.location = '@Url.Action("Delete", new {id = item.MaterialId})'" />
+
+            </td>
+        </tr>
+    }
 
 </table>
 <div>

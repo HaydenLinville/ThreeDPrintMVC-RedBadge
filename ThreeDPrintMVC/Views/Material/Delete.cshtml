@@ -4,54 +4,46 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete @Model.MaterialBrand.ToString()</h2>
+<h2 class="text-danger">Delete @Model.MaterialBrand.ToString()</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 class="text-danger">Are you sure you want to delete this?</h3>
 <div class="form-horizontal">
 
-    <hr />
-    <dl class="dl-horizontal col-md-offset-0 col-md-12">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MaterialBrand)
-        </dt>
+    <div>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaterialBrand)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MaterialType)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaterialType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-        <br />
-
-        <div class="dl-horizontal">
-
-            @using (Html.BeginForm())
+        <div class="card text-warning bg-secondary border-warning mb-3" style="max-width: 20rem;">
+            <div class="card-header bg-dark text-light">Material Info:</div>
+            @if (Model.Image != null)
             {
-                @Html.AntiForgeryToken()
+                <img class="card-img-top" src="/Material/RetrieveMImage/@Model.MaterialId" alt="" />
 
-                <div class="col-md-offset-1 col-md-11">
-                    <input type="submit" value="Delete" class="btn btn-danger" />
-
-                    <input type="button" value="Cancel" class="btn btn-default" onclick="goPrev()" />
-                    <script>
-                        function goPrev() { window.history.back(); }
-                    </script>
-                </div>
             }
-        </div>
-    </dl>
+            <div class="card-body ">
+                <p class="card-title">@Html.DisplayNameFor(model => model.MaterialBrand): @Html.DisplayFor(model => model.MaterialBrand)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.MaterialType):  @Html.DisplayFor(model => model.MaterialType)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.Color):  @Html.DisplayFor(model => model.Color)</p>
 
+            </div>
+            <div class="card-footer bg-dark">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="col-md-offset-1 col-md-11">
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+
+                        <input type="button" value="Cancel" class="btn btn-secondary" onclick="goPrev()" />
+                        <script>
+                            function goPrev() { window.history.back(); }
+                        </script>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+
+    </div>
 </div>

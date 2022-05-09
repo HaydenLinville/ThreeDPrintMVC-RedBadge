@@ -19,7 +19,7 @@
     </div>
 }
 
-<table class="table table-hover d-table-cell border-dark">
+<table class="table table-hover border-dark">
     <thead class="">
         <tr class="table-dark">
             <th class="text-dark" scope="col">
@@ -28,6 +28,7 @@
             <th class="text-dark" scope="col">
                 @Html.DisplayNameFor(model => model.PrinterModel)
             </th>
+            <th class="text-dark">Image</th>
             <th class="text-dark" scope="col">Update/Delete</th>
         </tr>
     </thead>
@@ -42,10 +43,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PrinterModel)
             </td>
+           @if(item.Image.Count() != 0)
+                {
+
+            <td> <img class="img-thumbnail" width="60" height="60" src="/Printer/RetrieveImage/@item.PrinterId" alt="No Picture" /></td>
+           }
+           else
+                {
+
+               <td>N/A</td>
+                }
+
             <td>
-                <input type="button" value="Detail" class="btn btn-default btn-xs" onclick="window.location = '@Url.Action("Detail", new {id = item.PrinterId})'" />
-                <input type="button" value="Edit" class="btn btn-warning btn-xs" onclick="window.location = '@Url.Action("Edit", new {id = item.PrinterId})'" />
-                <input type="button" value="Delete" class="btn btn-danger btn-xs" onclick="window.location = '@Url.Action("Delete", new {id = item.PrinterId})'" />
+                <input type="button" value="Detail" class="btn btn-secondary btn-sm" onclick="window.location = '@Url.Action("Detail", new {id = item.PrinterId})'" />
+                <input type="button" value="Edit" class="btn btn-warning btn-sm" onclick="window.location = '@Url.Action("Edit", new {id = item.PrinterId})'" />
+                <input type="button" value="Delete" class="btn btn-danger btn-sm" onclick="window.location = '@Url.Action("Delete", new {id = item.PrinterId})'" />
             </td>
         </tr>
     }

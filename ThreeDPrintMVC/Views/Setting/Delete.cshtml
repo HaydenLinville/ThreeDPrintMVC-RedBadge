@@ -4,70 +4,44 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2 class="text-danger">Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model=> model.CustomSettingName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model=> model.CustomSettingName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PrinterModel)
-        </dt>
+<h3 class="text-danger">Are you sure you want to delete this?</h3>
+<div class="text-primary">
 
-        <dd>
-            @Html.DisplayFor(model => model.PrinterModel)
-        </dd>
+    <div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
+        <div class="card text-white bg-primary border-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header bg-dark text-light">Setting Info:</div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Color)
-        </dd>
+            <div class="card-body ">
+                <p class="card-title">@Html.DisplayNameFor(model => model.CustomSettingName): @Html.DisplayFor(model => model.CustomSettingName)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.Printer):  @Html.DisplayFor(model => model.Printer)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.Material):  @Html.DisplayFor(model => model.Material)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.MaterialTemp):  @Html.DisplayFor(model => model.MaterialTemp)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.BedTemp):  @Html.DisplayFor(model => model.BedTemp)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.Speed):  @Html.DisplayFor(model => model.Speed)</p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MaterialTemp)
-        </dt>
+            </div>
+            <div class="card-footer bg-dark">
 
-        <dd>
-            @Html.DisplayFor(model => model.MaterialTemp)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BedTemp)
-        </dt>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.BedTemp)
-        </dd>
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                        <input type="button" value="Cancel" class="btn btn-secondary" onclick="goPrev()" />
+                        <script>
+                            function goPrev() { window.history.back(); }
+                        </script>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Speed)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Speed)
-        </dd>
 
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-<div class="form-actions no-color">
-    <input type="submit" value="Delete" class="btn btn-danger" />
-    <input type="button" value="Cancel" class="btn btn-default" onclick="goPrev()" />
-    <script>
-        function goPrev() { window.history.back();}
-    </script>
-</div>
-    }
 </div>
