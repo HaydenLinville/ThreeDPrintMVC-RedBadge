@@ -23,7 +23,8 @@ namespace ThreeDPrintMVC.Controllers
             var ps = CreatePrinterService();
             var ms = MService();
             //just added
-            
+
+            var mSelectList = ms.MaterialSelectList();
 
             if(ms.GetMaterials().Count() == 0)
             {
@@ -34,7 +35,7 @@ namespace ThreeDPrintMVC.Controllers
             var n = ps.GetPrinterById(id);
             ViewBag.PrinterBrand = n.PrinterBrand;
             ViewBag.PrinterId = n.PrinterId;
-            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialBrand");
+            ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
             return View();
         }
 
@@ -45,10 +46,13 @@ namespace ThreeDPrintMVC.Controllers
         {
             var ps = CreatePrinterService();
             var ms = MService();
+            var mSelectList = ms.MaterialSelectList();
+
+
             var printer = ps.GetPrinterById(id);
             var pId = printer.PrinterId;
             ViewBag.PrinterId = printer.PrinterId;
-            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialBrand");
+            ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
 
             if (!ModelState.IsValid)
             {
@@ -72,7 +76,7 @@ namespace ThreeDPrintMVC.Controllers
         {
             var ps = CreatePrinterService();
             var ms = MService();
-
+            var mSelectList = ms.MaterialSelectList();
             if(ps.GetPrinters().Count()==0)
             {
                 TempData["NoPrinter"] = "You need to have at least one printer to create Custom Settings";
@@ -86,7 +90,7 @@ namespace ThreeDPrintMVC.Controllers
             }
 
 
-            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialBrand");
+            ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
             ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterBrand");
             return View();
         }
@@ -97,7 +101,8 @@ namespace ThreeDPrintMVC.Controllers
         {
             var ps = CreatePrinterService();
             var ms = MService();
-            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialBrand");
+            var mSelectList = ms.MaterialSelectList();
+            ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
             ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterBrand");
             if (!ModelState.IsValid)
             {
@@ -118,8 +123,9 @@ namespace ThreeDPrintMVC.Controllers
         {
             var ps = CreatePrinterService();
             var ms = MService();
+            var mSelectList = ms.MaterialSelectList();
             ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterModel");
-            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialBrand");
+            ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
 
             var srv = SService();
             var setting = srv.GetSettingById(id);
@@ -133,8 +139,9 @@ namespace ThreeDPrintMVC.Controllers
         {
             var ps = CreatePrinterService();
             var ms = MService();
+            var mSelectList = ms.MaterialSelectList();
             ViewBag.PrinterId = new SelectList(ps.GetPrinters(), "PrinterId", "PrinterModel");
-            ViewBag.MaterialId = new SelectList(ms.GetMaterials(), "MaterialId", "MaterialBrand");
+            ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
 
             if (!ModelState.IsValid)
             {

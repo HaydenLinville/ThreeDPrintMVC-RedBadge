@@ -41,6 +41,17 @@ namespace Services
             }
         }
 
+        public IEnumerable<MaterialListSettingItem> MaterialSelectList()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var material = ctx.Materials.ToList();
+                IEnumerable<MaterialListSettingItem> mList = from s in material select new MaterialListSettingItem { MaterialId = s.MaterialId, MaterialInfo = s.MaterialBrand + " " + s.MaterialType.ToString() + " " + s.Color  };
+
+                return mList;
+            }
+        }
+
         public byte[] GetImageFromDataBase(int id)
         {
             using (var ctx = new ApplicationDbContext())

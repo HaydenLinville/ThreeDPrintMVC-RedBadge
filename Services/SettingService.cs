@@ -36,6 +36,8 @@ namespace Services
                 return ctx.SaveChanges() >= 1;
             }
         }
+
+        
         public bool CreateSetting(SettingCreate model)
         {
             var entity = new Setting()

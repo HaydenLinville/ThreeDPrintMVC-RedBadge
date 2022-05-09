@@ -55,6 +55,19 @@ namespace Services
             return imageBytes;
         }
 
+        public IEnumerable<PrinterListSettingItem> MaterialSelectList()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var printer = ctx.Printers.ToList();
+                IEnumerable<PrinterListSettingItem> pList = from s in printer select new PrinterListSettingItem { PrinterId = s.PrinterId, PrinterInfo = s.PrinterBrand + " " + s.PrinterModel};
+
+                return pList;
+            }
+        }
+
+
+
         public PrinterDetail GetPrinterById(int id)
         {
             using (var ctx = new ApplicationDbContext())
