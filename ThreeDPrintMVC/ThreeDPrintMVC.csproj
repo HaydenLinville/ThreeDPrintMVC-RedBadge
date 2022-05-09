@@ -189,6 +189,13 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\back.jpeg" />
+    <Content Include="Content\img\blue.jpeg" />
+    <Content Include="Content\img\dblue.jpeg" />
+    <Content Include="Content\img\green.jpeg" />
+    <Content Include="Content\img\night.jpeg" />
+    <Content Include="Content\img\rock.jpeg" />
+    <Content Include="Content\img\yellow.jpeg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
