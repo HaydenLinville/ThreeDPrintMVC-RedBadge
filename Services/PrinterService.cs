@@ -14,6 +14,11 @@ namespace Services
     {
         private readonly Guid _userId;
 
+        public PrinterService()
+        {
+
+        }
+
         public PrinterService(Guid userId)
         {
             _userId = userId;
@@ -54,6 +59,8 @@ namespace Services
             imageBytes = reader.ReadBytes((int)image.ContentLength);
             return imageBytes;
         }
+
+        
 
         public IEnumerable<PrinterListSettingItem> PrinterSelectList()
         {
@@ -96,10 +103,74 @@ namespace Services
                         Speed = i.Speed,
                         MaterialType = i.Material.MaterialType,
                         Color = i.Material.Color,
+                        MaterialId= i.MaterialId
 
                     }).ToList(),
                 };
 
+            }
+        }
+
+        public PrinterDetail GetPrinterByIdSeed(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                byte[] bytes = new byte[16];
+                BitConverter.GetBytes(00000000 - 0000 - 0000 - 0000 - 000000000000).CopyTo(bytes, 0);
+                var nope = new Guid(bytes);
+
+
+                var entity = ctx.Printers.Single(e => e.PrinterId == id && e.UserId == nope);
+
+                return new PrinterDetail
+                {
+                    PrinterId = entity.PrinterId,
+                    PrinterBrand = entity.PrinterBrand,
+                    PrinterModel = entity.PrinterModel,
+                    CanAutoLevel = entity.CanAutoLevel,
+                    HasDualExtruder = entity.HasDualExtruder,
+                    HasHeatedBed = entity.HasHeatedBed,
+                    CanUpgrade = entity.CanUpgrade,
+                    HasCamera = entity.HasCamera,
+                    HasWifi = entity.HasWifi,
+                    Image = entity.Image,
+                    Settings = entity.Settings.Select(i => new Models.SettingModels.SettingPrinterDisplay
+                    {
+
+                        CustomSettingName = i.CustomSettingName,
+                        SettingId = i.SettingId,
+                        BedTemp = i.BedTemp,
+                        MaterialTemp = i.MaterialTemp,
+                        Speed = i.Speed,
+                        MaterialType = i.Material.MaterialType,
+                        Color = i.Material.Color,
+                        MaterialId = i.MaterialId
+
+                    }).ToList(),
+                };
+
+            }
+        }
+
+
+
+        public IEnumerable<PrinterListItem> GetPrintersSeed()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                byte[] bytes = new byte[16];
+                BitConverter.GetBytes(00000000 - 0000 - 0000 - 0000 - 000000000000).CopyTo(bytes, 0);
+                var nope = new Guid(bytes);
+
+                var quary = ctx.Printers.Where(e => e.UserId == nope).Select(e => new PrinterListItem
+                {
+                    PrinterId = e.PrinterId,
+                    PrinterBrand = e.PrinterBrand,
+                    PrinterModel = e.PrinterModel,
+                    Image = e.Image,
+                });
+
+                return quary.ToArray();
             }
         }
 

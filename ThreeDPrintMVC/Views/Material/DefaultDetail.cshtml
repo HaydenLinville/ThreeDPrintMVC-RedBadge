@@ -1,0 +1,127 @@
+﻿@model Models.Material.MaterialDetail
+
+@{
+    ViewBag.Title = "DefaultDetail";
+}
+
+<h2>DefaultDetail</h2>
+
+
+<div class="d-flex justify-content-around">
+    <div>
+
+        <h2 class="text-white">@Model.MaterialBrand.ToString():</h2>
+        <div class="card text-warning bg-secondary border-warning mb-3" style="max-width: 20rem;">
+            <div class="card-header bg-dark text-light">Material Info:</div>
+            @if (Model.Image != null)
+            {
+                <img class="card-img-top" src="/Material/RetrieveMImage/@Model.MaterialId" alt="" />
+
+            }
+            <div class="card-body ">
+                <p class="card-title">@Html.DisplayNameFor(model => model.MaterialBrand): @Html.DisplayFor(model => model.MaterialBrand)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.MaterialType):  @Html.DisplayFor(model => model.MaterialType)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.Color):  @Html.DisplayFor(model => model.Color)</p>
+
+            </div>
+            <div class="card-footer bg-dark">
+
+                
+                <input type="button" value="Back to Material" class="btn btn-light btn-block" onclick="window.location= '@Url.Action("Default", "Material")'" />
+            </div>
+        </div>
+    </div>
+
+
+    @if (Model.MaterialType.ToString() == "PETG")
+    {
+        <div>
+            <h2 class="text-white">Info:</h2>
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="bg-dark card-header">Header</div>
+                <div class="card-body">
+                    <h5 class="card-title">Success card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <div class="card-footer bg-dark">
+                    <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
+
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.MaterialType.ToString() == "PLA")
+    {
+
+        <div>
+            <h2 class="text-white">Info:</h2>
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="bg-dark card-header">Header</div>
+                <div class="card-body">
+                    <h5 class="card-title">Success card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <div class="card-footer bg-dark">
+                    <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.MaterialType.ToString() == "ABS")
+    {
+
+        <div>
+            <h2 class="text-white">Info:</h2>
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="bg-dark card-header">Header</div>
+                <div class="card-body">
+                    <h5 class="card-title">Success card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <div class="card-footer bg-dark">
+                    <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.MaterialType.ToString() == "PVA")
+    {
+
+        <div>
+            <h2 class="text-white">Info:</h2>
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="bg-dark card-header">Header</div>
+                <div class="card-body">
+                    <h5 class="card-title">Success card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <div class="card-footer bg-dark">
+                    <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.MaterialType.ToString() == "Nylon")
+    {
+
+        <div>
+            <h2 class="text-white">Info:</h2>
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="bg-dark card-header">Header</div>
+                <div class="card-body">
+                    <h5 class="card-title">Success card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <div class="card-footer bg-dark">
+                    <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Models.PrinterModels.PrinterListItem>
+
+@{
+    ViewBag.Title = "Defalt";
+}
+
+<h2 class="text-white">Defalt Printers</h2>
+
+<table class="table table-hover border-dark">
+    <thead class="">
+        <tr class="table-dark">
+            <th class="text-dark" scope="col">
+                @Html.DisplayNameFor(model => model.PrinterBrand)
+            </th>
+            <th class="text-dark" scope="col">
+                @Html.DisplayNameFor(model => model.PrinterModel)
+            </th>
+            <th class="text-dark">Image</th>
+            <th class="text-dark" scope="col">Details</th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr class="table-success">
+
+            <td>
+                @Html.DisplayFor(modelItem => item.PrinterBrand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrinterModel)
+            </td>
+            @if (item.Image.Count() != 0)
+            {
+
+                <td> <img class="img-thumbnail" width="60" height="60" src="/Printer/RetrieveImage/@item.PrinterId" alt="No Picture" /></td>
+            }
+            else
+            {
+
+                <td>N/A</td>
+            }
+
+            <td>
+                <input type="button" value="Detail" class="btn btn-secondary btn-sm" onclick="window.location = '@Url.Action("DefaultDetail", new {id = item.PrinterId})'" />
+                
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    <input type="button" value="Add Your Own" class="btn btn-primary btn-lg" onclick="window.location = '@Url.Action("Create")'" />
+</div>

@@ -1,30 +1,9 @@
 ﻿@model Models.PrinterModels.PrinterDetail
 
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "DefaltDetail";
 }
 
-
-@if (TempData.ContainsKey("SettingSave"))
-{
-
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        @TempData["SettingSave"]
-    </div>
-}
-@if (TempData.ContainsKey("SettingUpdate"))
-{
-
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        @TempData["SettingUpdate"]
-    </div>
-}
 
 <div class="d-flex row justify-content-between ">
 
@@ -49,10 +28,8 @@
                 <p class="card-text">@Html.DisplayNameFor(model => model.HasCamera):  @Html.DisplayFor(model => model.HasCamera)</p>
             </div>
             <div class="card-footer bg-secondary">
-
-                <input type="button" value="Edit" class="btn btn-warning" onclick="window.location= '@Url.Action("Edit", "Printer", new {id = Model.PrinterId}, null )'" />
-                <input type="button" value="Delete" class="btn btn-outline-danger" onclick="window.location= '@Url.Action("Delete", "Printer", new {id = Model.PrinterId})'" />
-                <input type="button" value="Back to Printers" class="btn btn-light" onclick="window.location= '@Url.Action("Index", "Printer")'" />
+                
+                <input type="button" value="Back to Printers" class="btn btn-light btn-block" onclick="window.location= '@Url.Action("Default", "Printer")'" />
             </div>
         </div>
     </div>
@@ -93,11 +70,9 @@
                         <th class="text-dark" scope="col">
                             @Html.DisplayNameFor(model => model.Settings.First().Speed)
                         </th>
-                        <th>
-                            Image
-                        </th>
+
                         <th class="text-dark" scope="col">
-                            Update/Delete
+                            Image
                         </th>
                     </tr>
                 </thead>
@@ -129,11 +104,7 @@
                                 @Html.DisplayFor(modelI => m.Speed)
                             </td>
                             <td>
-                                <img class="img-thumbnail" width="60" height="60" src="/Material/RetrieveMImage/@m.MaterialId" />
-                            </td>
-                            <td>
-                                <input type="button" value="Edit" class="btn btn-warning btn-xs" onclick="window.location = '@Url.Action("Edit", "Setting", new {settingId = m.SettingId, printerId = Model.PrinterId})'" />
-                                <input type="button" value="Delete" class="btn btn-outline-danger btn-xs" onclick="window.location = '@Url.Action("Delete", "Setting", new {id = m.SettingId})'" />
+                              <img class="img-thumbnail" width="60" height="60" src="/Material/RetrieveMImage/@m.MaterialId"/>
                             </td>
                         </tr>
                     </tbody>
@@ -142,10 +113,9 @@
             </table>
         }
         <div class="ml-auto p-2">
-            <input type="button" value="Add New Custom Settings" class="btn btn-primary" onclick="window.location= '@Url.Action("CreateWPrint", "Setting", new {id = Model.PrinterId})'" />
+            <input type="button" value="Add Your Own Printer" class="btn btn-primary" onclick="window.location= '@Url.Action("Create", "Printer")'" />
         </div>
     </div>
     <br />
     <br />
 </div>
-
