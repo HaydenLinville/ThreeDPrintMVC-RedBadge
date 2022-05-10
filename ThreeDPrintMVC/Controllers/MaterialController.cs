@@ -9,22 +9,41 @@ using System.Web.Mvc;
 
 namespace ThreeDPrintMVC.Controllers
 {
-    [Authorize]
+    
     public class MaterialController : Controller
     {
         // GET: Material
+        [Authorize]
         public ActionResult Index()
         {
             var srv = MService();
             var model = srv.GetMaterials();
             return View(model);
         }
-
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
+        public ActionResult Default()
+        {
+            var ms = new MaterialService();
+            var model = ms.GetMaterialsSeed();
+            return View(model);
+        }
+
+        public ActionResult DefaultDetail(int id)
+        {
+            var ms = new MaterialService();
+            var model = ms.GetMaterialByIdSeed(id);
+
+            return View(model);
+        }
+
+
+
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(MaterialCreate model)
@@ -51,10 +70,11 @@ namespace ThreeDPrintMVC.Controllers
             return View();
         }
 
-
+        
         public ActionResult RetrieveMImage(int id)
         {
-            var mService = MService();
+            
+            var mService = new MaterialService();
             byte[] cover = mService.GetImageFromDataBase(id);
             
             if(cover!= null)
@@ -68,14 +88,14 @@ namespace ThreeDPrintMVC.Controllers
 
         }
 
-
+        [Authorize]
         public ActionResult Detail(int id)
         {
             var srv = MService();
             var entity = srv.GetMaterialById(id);
             return View(entity);
         }
-
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var srv = MService();
@@ -85,7 +105,7 @@ namespace ThreeDPrintMVC.Controllers
 
         }
 
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, MaterialEdit model)
@@ -111,14 +131,14 @@ namespace ThreeDPrintMVC.Controllers
 
             return View(model);
         }
-
+        [Authorize]
         public ActionResult Delete(int id)
         {
             var srv = MService();
             var model = srv.GetMaterialById(id);
             return View(model);
         }
-
+        [Authorize]
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]

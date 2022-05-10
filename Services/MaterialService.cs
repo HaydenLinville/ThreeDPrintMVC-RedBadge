@@ -14,6 +14,11 @@ namespace Services
     {
         private readonly Guid _userId;
 
+        public MaterialService()
+        {
+
+        }
+
         public MaterialService(Guid userId)
         {
             _userId = userId;
@@ -81,6 +86,38 @@ namespace Services
                 return new MaterialDetail { MaterialId = material.MaterialId, MaterialBrand = material.MaterialBrand, Color = material.Color, MaterialType = material.MaterialType, Image = material.Image };
             }
         }
+
+        public MaterialDetail GetMaterialByIdSeed(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                byte[] bytes = new byte[16];
+                BitConverter.GetBytes(00000000 - 0000 - 0000 - 0000 - 000000000000).CopyTo(bytes, 0);
+                var nope = new Guid(bytes);
+
+
+
+                var material = ctx.Materials.Single(e => e.UserId == nope && e.MaterialId == id);
+
+                return new MaterialDetail { MaterialId = material.MaterialId, MaterialBrand = material.MaterialBrand, Color = material.Color, MaterialType = material.MaterialType, Image = material.Image };
+            }
+        }
+
+        public IEnumerable<MaterialListItem> GetMaterialsSeed()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                byte[] bytes = new byte[16];
+                BitConverter.GetBytes(00000000 - 0000 - 0000 - 0000 - 000000000000).CopyTo(bytes, 0);
+                var nope = new Guid(bytes);
+
+                var quary = ctx.Materials.Where(e => e.UserId == nope).Select(e => new MaterialListItem { MaterialBrand = e.MaterialBrand, MaterialId = e.MaterialId, Color = e.Color, MaterialType = e.MaterialType, Image = e.Image });
+
+                return quary.ToArray();
+            }
+        }
+
+
 
         public IEnumerable<MaterialListItem> GetMaterials()
         {

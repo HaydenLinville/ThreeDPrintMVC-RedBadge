@@ -9,10 +9,11 @@ using System.Web.Mvc;
 
 namespace ThreeDPrintMVC.Controllers
 {
-    [Authorize]
+    
     public class PrinterController : Controller
     {
         // GET: Printer
+        [Authorize]
         public ActionResult Index()
         {
             var service = CreatePrinterService();
@@ -20,11 +21,26 @@ namespace ThreeDPrintMVC.Controllers
             return View(model);
         }
 
+        public ActionResult Default()
+        {
+            var ps = new PrinterService();
+            var model = ps.GetPrintersSeed();
+            return View(model);
+        }
+
+        public ActionResult DefaultDetail(int id)
+        {
+            var ps = new PrinterService();
+            var model = ps.GetPrinterByIdSeed(id);
+
+            return View(model);
+        }
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(PrinterCreate model)
@@ -54,7 +70,7 @@ namespace ThreeDPrintMVC.Controllers
 
         public ActionResult RetrieveImage(int id)
         {
-            var s = CreatePrinterService();
+            var s = new PrinterService();
             byte[] cover = s.GetImageFromDataBase(id);
             if(cover != null)
             {
@@ -65,8 +81,8 @@ namespace ThreeDPrintMVC.Controllers
                 return null;
             }
         }
-        
 
+        [Authorize]
         public ActionResult Detail(int id)
         {
             var service = CreatePrinterService();
@@ -76,7 +92,7 @@ namespace ThreeDPrintMVC.Controllers
             return View(entity);
         }
 
-
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var srv = CreatePrinterService();
@@ -86,7 +102,7 @@ namespace ThreeDPrintMVC.Controllers
             //has not added img 
             return View(editModel);
         }
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, PrinterEdit model)
@@ -115,7 +131,7 @@ namespace ThreeDPrintMVC.Controllers
             return View(model);
 
         }
-
+        [Authorize]
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
@@ -125,7 +141,7 @@ namespace ThreeDPrintMVC.Controllers
 
             return View(model);
         }
-
+        [Authorize]
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -138,7 +154,7 @@ namespace ThreeDPrintMVC.Controllers
             return RedirectToAction("Index");
         }
 
-
+        
         private PrinterService CreatePrinterService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
