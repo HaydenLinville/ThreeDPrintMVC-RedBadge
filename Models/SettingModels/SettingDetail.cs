@@ -10,7 +10,7 @@ namespace Models.SettingModels
 {
     public class SettingDetail
     {
-        [Display(Name = "Custom Setting Name")]
+        [Display(Name = "Name")]
         public string CustomSettingName { get; set; }
         public int SettingId { get; set; }
         [Display(Name = "Material")]

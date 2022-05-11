@@ -12,7 +12,7 @@ namespace Models.SettingModels
     {
         //maybe add materialbrand
         
-        [Display(Name = "Custom Setting Name")]
+        [Display(Name = "Name")]
         public string CustomSettingName { get; set; }
         public int SettingId { get; set; }
         [Display(Name = "Material")]
@@ -26,6 +26,7 @@ namespace Models.SettingModels
         [Display(Name = "Speed mm/s")]
         public double Speed { get; set; }
         public int MaterialId { get; set; }
+        public byte[] Image { get; set; }
 
     }
 }

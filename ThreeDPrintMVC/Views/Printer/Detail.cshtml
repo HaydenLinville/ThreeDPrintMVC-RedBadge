@@ -71,7 +71,6 @@
                         <th class="text-dark" scope="col">
                             @Html.DisplayNameFor(model => model.Settings.First().CustomSettingName)
                         </th>
-
                         <th class="text-dark" scope="col">
                             @Html.DisplayNameFor(model => model.Settings.First().MaterialType)
                         </th>
@@ -93,9 +92,6 @@
                         <th class="text-dark" scope="col">
                             @Html.DisplayNameFor(model => model.Settings.First().Speed)
                         </th>
-                        <th>
-                            Image
-                        </th>
                         <th class="text-dark" scope="col">
                             Update/Delete
                         </th>
@@ -110,12 +106,22 @@
                             <td>
                                 @Html.DisplayFor(modelI => m.CustomSettingName)
                             </td>
+
                             <td>
                                 @Html.DisplayFor(modelI => m.MaterialType)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelI => m.Color)
-                            </td>
+
+                            @if (m.Image != null && m.Image.Length > 0)
+                            {
+                                <td>
+                                    <img class="img-thumbnail" width="60" height="60" src="/Material/RetrieveMImage/@m.MaterialId" />
+                                </td>
+                            }
+                            else
+                            {
+                                <td>@Html.DisplayFor(modelI => m.Color)</td>
+                            }
+
 
                             <td>
                                 @Html.DisplayFor(modelI => m.BedTemp)
@@ -129,9 +135,6 @@
                                 @Html.DisplayFor(modelI => m.Speed)
                             </td>
                             <td>
-                                <img class="img-thumbnail" width="60" height="60" src="/Material/RetrieveMImage/@m.MaterialId" />
-                            </td>
-                            <td>
                                 <input type="button" value="Edit" class="btn btn-warning btn-xs" onclick="window.location = '@Url.Action("Edit", "Setting", new {settingId = m.SettingId, printerId = Model.PrinterId})'" />
                                 <input type="button" value="Delete" class="btn btn-outline-danger btn-xs" onclick="window.location = '@Url.Action("Delete", "Setting", new {id = m.SettingId})'" />
                             </td>
@@ -141,8 +144,14 @@
 
             </table>
         }
-        <div class="ml-auto p-2">
-            <input type="button" value="Add New Custom Settings" class="btn btn-primary" onclick="window.location= '@Url.Action("CreateWPrint", "Setting", new {id = Model.PrinterId})'" />
+        <div class="row">
+
+            <div class="ml-md-3">
+                <input type="button" value="Add New Custom Settings" class="btn btn-primary" onclick="window.location= '@Url.Action("CreateWPrint", "Setting", new {id = Model.PrinterId})'" />
+            </div>
+            <div class="ml-md-3">
+                <input type="button" value="Home" class="btn btn-secondary" onclick="window.location= '@Url.Action("Index", "Home")'" />
+            </div>
         </div>
     </div>
     <br />

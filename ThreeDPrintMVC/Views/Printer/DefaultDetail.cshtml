@@ -28,7 +28,7 @@
                 <p class="card-text">@Html.DisplayNameFor(model => model.HasCamera):  @Html.DisplayFor(model => model.HasCamera)</p>
             </div>
             <div class="card-footer bg-secondary">
-                
+
                 <input type="button" value="Back to Printers" class="btn btn-light btn-block" onclick="window.location= '@Url.Action("Default", "Printer")'" />
             </div>
         </div>
@@ -71,9 +71,7 @@
                             @Html.DisplayNameFor(model => model.Settings.First().Speed)
                         </th>
 
-                        <th class="text-dark" scope="col">
-                            Image
-                        </th>
+
                     </tr>
                 </thead>
                 @foreach (var m in Model.Settings)
@@ -89,7 +87,7 @@
                                 @Html.DisplayFor(modelI => m.MaterialType)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelI => m.Color)
+                                <img class="img-thumbnail" width="60" height="60" src="/Material/RetrieveMImage/@m.MaterialId" />
                             </td>
 
                             <td>
@@ -103,18 +101,29 @@
                             <td>
                                 @Html.DisplayFor(modelI => m.Speed)
                             </td>
-                            <td>
-                              <img class="img-thumbnail" width="60" height="60" src="/Material/RetrieveMImage/@m.MaterialId"/>
-                            </td>
+
+
+
+
+
+
                         </tr>
                     </tbody>
                 }
 
             </table>
         }
-        <div class="ml-auto p-2">
+        <div class="row">
+
+        <div class="ml-md-3">
             <input type="button" value="Add Your Own Printer" class="btn btn-primary" onclick="window.location= '@Url.Action("Create", "Printer")'" />
         </div>
+        <div class="ml-md-3">
+            <input type="button" value="Home" class="btn btn-secondary" onclick="window.location= '@Url.Action("Index", "Home")'" />
+        </div>
+        </div>
+
+
     </div>
     <br />
     <br />

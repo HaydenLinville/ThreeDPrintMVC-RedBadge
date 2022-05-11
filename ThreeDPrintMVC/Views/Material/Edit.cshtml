@@ -49,12 +49,31 @@
 
 
 
+                
                 <div class="row">
                     @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <input type="file" name="ImageData" id="ImageData" onchange="filecheck(this);"/>
+                        <input type="file" name="ImageData" id="ImageData" onchange="filecheck(this);" />
                     </div>
                 </div>
+
+
+                <div class="row">
+                    <p class="col-md-2">Current Image</p>
+                    @if (Model.Image != null && Model.Image.Length > 0)
+                    {
+
+                        <div class="ml-md-2"><img class="img-fluid" width="150" height="150" src="/Material/RetrieveMImage/@Model.MaterialId" /></div>
+                    }
+                    else
+                    {
+                        <div class="ml-md-2"><p>None</p></div>
+                    }
+                </div>
+
+
+
+
             </div>
 
         </div>

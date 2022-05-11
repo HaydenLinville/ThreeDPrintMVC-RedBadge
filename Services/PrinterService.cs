@@ -103,7 +103,8 @@ namespace Services
                         Speed = i.Speed,
                         MaterialType = i.Material.MaterialType,
                         Color = i.Material.Color,
-                        MaterialId= i.MaterialId
+                        MaterialId= i.MaterialId,
+                        Image = i.Material.Image
 
                     }).ToList(),
                 };
