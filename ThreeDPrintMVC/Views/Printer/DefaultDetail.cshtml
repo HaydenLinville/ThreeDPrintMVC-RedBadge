@@ -18,15 +18,16 @@
                 <img class="card-img-top" src="/Printer/RetrieveImage/@Model.PrinterId" alt="" />
 
             }
-            <div class="card-body bg-dark">
-                <h4 class="card-title">@Html.DisplayNameFor(model => model.PrinterBrand): @Html.DisplayFor(model => model.PrinterBrand)</h4>
-                <p class="card-text">@Html.DisplayNameFor(model => model.PrinterModel):  @Html.DisplayFor(model => model.PrinterModel)</p>
-                <p class="card-text">@Html.DisplayNameFor(model => model.HasDualExtruder):  @Html.DisplayFor(model => model.HasDualExtruder)</p>
-                <p class="card-text">@Html.DisplayNameFor(model => model.CanAutoLevel):  @Html.DisplayFor(model => model.CanAutoLevel)</p>
-                <p class="card-text">@Html.DisplayNameFor(model => model.HasWifi): @Html.DisplayFor(model => model.HasWifi)</p>
-                <p class="card-text">@Html.DisplayNameFor(model => model.CanUpgrade):  @Html.DisplayFor(model => model.CanUpgrade)</p>
-                <p class="card-text">@Html.DisplayNameFor(model => model.HasCamera):  @Html.DisplayFor(model => model.HasCamera)</p>
-            </div>
+        <div class="card-body bg-dark">
+            <h4 class="card-title">@Html.DisplayNameFor(model => model.PrinterBrand): @Html.DisplayFor(model => model.PrinterBrand)</h4>
+            <p class="card-text">@Html.DisplayNameFor(model => model.PrinterModel):  @Html.DisplayFor(model => model.PrinterModel)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.HasDualExtruder):  @Html.DisplayFor(model => model.HasDualExtruder)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.CanAutoLevel):  @Html.DisplayFor(model => model.CanAutoLevel)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.HasHeatedBed):  @Html.DisplayFor(model => model.HasHeatedBed)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.HasWifi): @Html.DisplayFor(model => model.HasWifi)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.CanUpgrade):  @Html.DisplayFor(model => model.CanUpgrade)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.HasCamera):  @Html.DisplayFor(model => model.HasCamera)</p>
+        </div>
             <div class="card-footer bg-secondary">
 
                 <input type="button" value="Back to Printers" class="btn btn-light btn-block" onclick="window.location= '@Url.Action("Default", "Printer")'" />

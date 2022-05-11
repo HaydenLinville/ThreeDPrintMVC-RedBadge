@@ -25,6 +25,15 @@
         @TempData["SettingUpdate"]
     </div>
 }
+@if (TempData.ContainsKey("NoBed"))
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["NoBed"]
+    </div>
+}
 
 <div class="d-flex row justify-content-between ">
 
@@ -44,6 +53,7 @@
                 <p class="card-text">@Html.DisplayNameFor(model => model.PrinterModel):  @Html.DisplayFor(model => model.PrinterModel)</p>
                 <p class="card-text">@Html.DisplayNameFor(model => model.HasDualExtruder):  @Html.DisplayFor(model => model.HasDualExtruder)</p>
                 <p class="card-text">@Html.DisplayNameFor(model => model.CanAutoLevel):  @Html.DisplayFor(model => model.CanAutoLevel)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.HasHeatedBed):  @Html.DisplayFor(model => model.HasHeatedBed)</p>
                 <p class="card-text">@Html.DisplayNameFor(model => model.HasWifi): @Html.DisplayFor(model => model.HasWifi)</p>
                 <p class="card-text">@Html.DisplayNameFor(model => model.CanUpgrade):  @Html.DisplayFor(model => model.CanUpgrade)</p>
                 <p class="card-text">@Html.DisplayNameFor(model => model.HasCamera):  @Html.DisplayFor(model => model.HasCamera)</p>

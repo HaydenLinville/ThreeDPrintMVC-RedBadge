@@ -21,6 +21,12 @@ namespace ThreeDPrintMVC.Controllers
             return View(model);
         }
 
+        public ActionResult Info()
+        {
+            return View();
+        }
+
+
         public ActionResult Default()
         {
             var ps = new PrinterService();

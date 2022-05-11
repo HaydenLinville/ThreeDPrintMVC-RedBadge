@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "Info";
+}
+
+<h2 class="text-white">Learn About Printer Features and Why They Are Important:</h2>
+
+<section class="mt-3 mb-3 pt-3 pb-3 text-white rounded" style="background-image:url(../../Content/img/green.jpeg)">
+    <div class="container-fluid">
+        <div class="mb-3">
+            <a class="h1 btn btn-outline-dark btn-lg btn-block text-white" data-toggle="collapse" href="#collapseExtruder" role="button" aria-expanded="false" aria-controls="collapseExtruder">Extruder</a>
+            <div class="collapse" id="collapseExtruder">
+                <div class="text-left">
+                    <p>
+                        A 3D printer extruder is a filament feeding mechanism used in many fused filament fabrication (FFF) 3D printers. There are several types of 3D printer extruders. A Bowden extruder is a type of extruder that pushes filament though a long and flexible PTFE (Teflon) tube to the hot end. An alternative type of extruder which is also widely used in filament 3D printers is the direct drive extruder or direct extruder, which sits closer to the extruder hot end.
+                    </p>
+
+                    <p>
+                        The main advantage of buying a dual extruder 3d printer is that you can print in multiple materials. Using multiple 3d printer filament materials is very useful for: To understand the advantages of solid infill one must understand that with a single extruder model and supports are printed using the same material.
+                    </p>
+                    <p>
+                        [Information found on <a class="text-white" href="https://en.wikipedia.org/wiki/3D_printer_extruder">Wikipedia</a> and <a class="text-white" href="https://www.idig3dprinting.co.uk/dual-extruder-3d-printers/#:~:text=The%20main%20advantage%20of%20buying,printed%20using%20the%20same%20material.">iDig3dPrinting</a>]
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="mb-3">
+            <a class="h1 btn btn-outline-dark btn-lg btn-block text-white" data-toggle="collapse" href="#collapseAutoLevel" role="button" aria-expanded="false" aria-controls="collapseAutoLevel">Auto Leveler</a>
+            <div class="collapse" id="collapseAutoLevel">
+                <div class="text-left">
+                    <p>
+                        The bed may be slanted at certain angles due to the faulty adjustments of the leveling screws on the printer. While the bed may seem completely level to the naked eye, even a slight slant in the angle can affect and ruin the print. Therefore, it is necessary to keep a level bed before starting a print job.
+                    </p>
+                    <p>Doing this can take a lot of time. Having a printer that can auto level your bed is very appitizing to individuals that print a lot. </p>
+                    <p>
+                        [Information found on <a class="text-white" href="https://www.3dprintingspot.com/post/3d-printer-why-bed-leveling-is-needed#:~:text=The%20bed%20may%20be%20slanted,before%20starting%20a%20print%20job.">3DPrintingSpot</a>]
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="mb-3">
+            <a class="h1 btn btn-outline-dark btn-lg btn-block text-white" data-toggle="collapse" href="#collapseHeatedBed" role="button" aria-expanded="false" aria-controls="collapseHeatedBed">Heated Beds</a>
+            <div class="collapse" id="collapseHeatedBed">
+                <div class="text-left">
+                    <p>Benifits of Heated Beds:</p>
+                    <p>
+                        Bed adhesion: A hot build surface prevents extruded filament from cooling too much, too soon. This gives it time to adjust to tiny microscopic imperfections on the surface and stick more firmly. Exactly what constitutes “too cool” or “too fast” is dependant on the printed material and other factors
+                    </p>
+                    <p>
+                        Helps prevent warping: Internal stresses build as molten filament cools, and these are especially pronounced at corners. As additional layers of hot filament are added, the temperature difference can cause these stresses to pull inwards. In turn, if adhesion is poor, corners can become detached and curl (i.e. warp) upwards, potentially ruining a print. Heating the bed reduces the tendency for prints to warp by evening out the temperature difference as well as holding the print down with better adhesion.
+                    </p>
+                    <p>
+                        Assists print removal: When a print is finished and the heated bed cools down, it allows the lowest layers of plastic to contract a little more, become more rigid, and loosen their grip on the bed. With most materials, this helps prints to detach cleanly from the print surface.
+                    </p>
+
+                    <p>
+                        [Information found on <a class="text-white" href="https://all3dp.com/2/3d-printer-heated-bed-advantages/">All3DP</a>]
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   
+
+
+</section>
+
+<div class="ml-md-3">
+    <input type="button" value="Home" class="btn btn-block btn-secondary" onclick="window.location= '@Url.Action("Index", "Home")'" />
+</div>

@@ -17,7 +17,7 @@
                 @Html.ActionLink("3D Printer", "Index", "Home", null, new { @class = "text-white nav-link" })
             </div>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="text-white">Your Stuff</span>
             </button>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="navbar-nav mr-auto">
@@ -30,20 +30,25 @@
                     }
                 </ul>
             </div>
-            <div class="navbar-brand form-inline my-2 my-lg-0">
+
+            <button class="navbar-toggler" type="button" data-toggle ="collapse" data-target="#navmenu">
+                <span class="text-white">Log Off</span>
+            </button>
+
+            <div class="collapse navbar-collapse navbar-brand form-inline my-2 my-lg-0 " id="navmenu">
                 <div class="row">
                     @if (Request.IsAuthenticated)
                     {
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                         {
                             @Html.AntiForgeryToken()
-                            <ul class="nav navbar">
+                            <ul class="nav navbar-nav m-sm-auto nav-item">
                                 <li>
 
                                     @Html.ActionLink($"Welcom Back {User.Identity.Name}", "Index", "Manage", null, new { @class = "nav-link text-white" })
                                 </li>
                                 <li>
-                                    <a class="nav-link text-white" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                    <a class="nav-item nav-link text-white" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
 
                                 </li>
                             </ul>
@@ -62,7 +67,7 @@
 
     </nav>
 
-    <div class="container body-content mt-5">
+    <div class="container body-content mt-5 pt-5">
         @RenderBody()
         <hr />
         <footer>

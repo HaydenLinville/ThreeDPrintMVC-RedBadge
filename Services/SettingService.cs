@@ -12,7 +12,7 @@ namespace Services
     {
         private readonly Guid _userId;
 
-       
+
 
         public SettingService(Guid userId)
         {
@@ -21,43 +21,82 @@ namespace Services
 
         public bool CreateSettingWPrint(SettingCreate model, int id)
         {
-           
-            var entity = new Setting()
-            {
-                UserId = _userId,
-                CustomSettingName = model.CustomSettingName,
-                MaterialId = model.MaterialId,
-                PrinterId = id,
-                BedTemp = model.BedTemp,
-                MaterialTemp = model.MaterialTemp,
-                Speed = model.Speed,
-            };
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Settings.Add(entity);
-                return ctx.SaveChanges() >= 1;
+                var printer = ctx.Printers.Single(e => e.PrinterId == id);
+                if (printer.HasHeatedBed == false)
+                {
+
+                    var entityNoBed = new Setting()
+                    {
+                        UserId = _userId,
+                        CustomSettingName = model.CustomSettingName,
+                        MaterialId = model.MaterialId,
+                        PrinterId = id,
+                        BedTemp = 0,
+                        MaterialTemp = model.MaterialTemp,
+                        Speed = model.Speed,
+                    };
+                    ctx.Settings.Add(entityNoBed);
+                    return ctx.SaveChanges() >= 1;
+                }
+                else
+                {
+                    var entity = new Setting()
+                    {
+                        UserId = _userId,
+                        CustomSettingName = model.CustomSettingName,
+                        MaterialId = model.MaterialId,
+                        PrinterId = id,
+                        BedTemp = model.BedTemp,
+                        MaterialTemp = model.MaterialTemp,
+                        Speed = model.Speed,
+                    };
+                    ctx.Settings.Add(entity);
+                    return ctx.SaveChanges() >= 1;
+                }
             }
         }
 
-        
+
         public bool CreateSetting(SettingCreate model)
         {
-            var entity = new Setting()
-            {
-                UserId = _userId,
-                CustomSettingName = model.CustomSettingName,
-                MaterialId = model.MaterialId,
-                PrinterId = model.PrinterId,
-                BedTemp = model.BedTemp,
-                MaterialTemp = model.MaterialTemp,
-                Speed = model.Speed,
-            };
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Settings.Add(entity);
-                return ctx.SaveChanges() == 1;
+                var printer = ctx.Printers.Single(e => e.PrinterId == model.PrinterId);
+                if (printer.HasHeatedBed == false)
+                {
+                    var entityNoBed = new Setting()
+                    {
+                        UserId = _userId,
+                        CustomSettingName = model.CustomSettingName,
+                        MaterialId = model.MaterialId,
+                        PrinterId = model.PrinterId,
+                        BedTemp = 0,
+                        MaterialTemp = model.MaterialTemp,
+                        Speed = model.Speed,
+                    };
+                    ctx.Settings.Add(entityNoBed);
+                    return ctx.SaveChanges() == 1;
+                }
+                else
+                {
+                    var entity = new Setting()
+                    {
+                        UserId = _userId,
+                        CustomSettingName = model.CustomSettingName,
+                        MaterialId = model.MaterialId,
+                        PrinterId = model.PrinterId,
+                        BedTemp = model.BedTemp,
+                        MaterialTemp = model.MaterialTemp,
+                        Speed = model.Speed,
+                    };
+                    ctx.Settings.Add(entity);
+                    return ctx.SaveChanges() == 1;
+                }
             }
         }
+
 
 
 
@@ -108,7 +147,7 @@ namespace Services
                     MaterialTemp = setDe.MaterialTemp,
                     BedTemp = setDe.BedTemp,
                     Speed = setDe.Speed,
-                    Printer= setDe.Printer.PrinterBrand + " " + setDe.Printer.PrinterModel,
+                    Printer = setDe.Printer.PrinterBrand + " " + setDe.Printer.PrinterModel,
                     Material = setDe.Material.MaterialBrand + " " + setDe.Material.MaterialType.ToString() + " " + setDe.Material.Color
                 };
             }

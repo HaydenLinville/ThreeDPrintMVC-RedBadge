@@ -61,6 +61,8 @@ namespace ThreeDPrintMVC.Controllers
 
             if (src.CreateSettingWPrint(model, pId))
             {
+                if(printer.HasHeatedBed == false)
+                { TempData["NoBed"] = $"Bed temp set to zero because {printer.PrinterBrand} has no heated bed."; };
                 TempData["SettingSave"] = $"{model.CustomSettingName} was created!";
                 return RedirectToAction("Detail", "Printer", new { id = pId });
 

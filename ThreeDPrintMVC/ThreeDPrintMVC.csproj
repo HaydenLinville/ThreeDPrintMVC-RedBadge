@@ -369,6 +369,7 @@
     <Content Include="Views\Printer\DefaultDetail.cshtml" />
     <Content Include="Views\Material\Default.cshtml" />
     <Content Include="Views\Material\DefaultDetail.cshtml" />
+    <Content Include="Views\Printer\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
