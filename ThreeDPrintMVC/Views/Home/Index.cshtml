@@ -6,72 +6,105 @@
 <div class="jumbotron" style="background-image:url(../../Content/img/rock.jpeg)">
     <h1 class="text-white">3D Printing Made Easy </h1>
 
-
-
 </div>
 
-<div class="d-flex flex-column mr-0 ml-0 pl-2 pr-2 pb-2 text-white" style="background-image:url(../../Content/img/green.jpeg)">
+<div class="mr-0 ml-0 mt-5 text-white pl-2 pr-2 pb-2" style="background-image:url(../../Content/img/White.jpeg)">
+
 
     <div>
         <h3>
-            Printer Information
+            Examples
         </h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <div class="d-flex justify-content-around flex-wrap">
 
             <div>
-                <input type="button" value="Add Printer" class="btn btn-outline-dark btn-lg btn-block " onclick="window.location = '@Url.Action("Create", "Printer")'" />
+                <input type="button" value="See Printer Examples" class="btn btn-outline-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Default", "Printer")'" />
             </div>
             <div>
-                <input type="button" value="View Printers" class="btn btn-outline-dark btn-lg btn-block " onclick="window.location = '@Url.Action("Index", "Printer")'" />
+                <input type="button" value="See Material Examples" class="btn btn-outline-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Default", "Material")'" />
             </div>
-            <div>
-                <input type="button" value="Printer Info" class="btn btn-outline-dark btn-lg btn-block " onclick="window.location = '@Url.Action("Info", "Material")'" />
-            </div>
+
+
+
         </div>
     </div>
 
 </div>
 
-<div class="row mr-0 ml-0 mt-5 text-white pl-2 pr-2 pb-2" style="background-image:url(../../Content/img/yellow.jpeg)">
 
 
-    <div>
-        <h3>
-            Material Information
-        </h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <div class="d-flex justify-content-around flex-wrap">
 
-            <div>
-                <input type="button" value="Add Material" class="btn btn-outline-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Create", "Material")'" />
-            </div>
-            <div>
-                <input type="button" value="View Material" class="btn btn-outline-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Index", "Material")'" />
-            </div>
-            <div>
-                <input type="button" value="Material Info" class="btn btn-outline-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Info", "Material")'" />
+@if (User.Identity.IsAuthenticated)
+
+{
+    <div class="d-flex flex-column mr-0 mt-5 ml-0 pl-2 pr-2 pb-2 text-white" style="background-image:url(../../Content/img/green.jpeg)">
+
+
+
+
+        <div>
+            <h3>
+                Printer Information
+            </h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="d-flex justify-content-around flex-wrap">
+
+                <div>
+                    <input type="button" value="Add Printer" class="btn btn-outline-dark btn-lg btn-block " onclick="window.location = '@Url.Action("Create", "Printer")'" />
+                </div>
+                <div>
+                    <input type="button" value="View Printers" class="btn btn-outline-dark btn-lg btn-block " onclick="window.location = '@Url.Action("Index", "Printer")'" />
+                </div>
+                <div>
+                    <input type="button" value="Printer Info" class="btn btn-outline-dark btn-lg btn-block " onclick="window.location = '@Url.Action("Info", "Material")'" />
+                </div>
             </div>
         </div>
+
     </div>
 
-</div>
-
-<div class="mr-0 ml-0 mt-5 text-white pl-2 pr-2 pb-2" style="background-image:url(../../Content/img/dblue.jpeg)">
+    <div class="row mr-0 ml-0 mt-5 text-white pl-2 pr-2 pb-2" style="background-image:url(../../Content/img/yellow.jpeg)">
 
 
-    <div>
-        <h3>
-            Custom Settings
-        </h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <div class="d-flex justify-content-around flex-wrap">
+        <div>
+            <h3>
+                Material Information
+            </h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="d-flex justify-content-around flex-wrap">
 
-            <div>
-                <input type="button" value="Create Custom Settings" class="btn btn-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Create", "Setting")'" />
+                <div>
+                    <input type="button" value="Add Material" class="btn btn-outline-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Create", "Material")'" />
+                </div>
+                <div>
+                    <input type="button" value="View Material" class="btn btn-outline-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Index", "Material")'" />
+                </div>
+                <div>
+                    <input type="button" value="Material Info" class="btn btn-outline-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Info", "Material")'" />
+                </div>
             </div>
-           
         </div>
+
     </div>
 
-</div>
+    <div class="mr-0 ml-0 mt-5 text-white pl-2 pr-2 pb-2" style="background-image:url(../../Content/img/dblue.jpeg)">
+
+
+        <div>
+            <h3>
+                Custom Settings
+            </h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="d-flex justify-content-around flex-wrap">
+
+                <div>
+                    <input type="button" value="Create Custom Settings" class="btn btn-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Create", "Setting")'" />
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+}
+

@@ -16,11 +16,14 @@ namespace Models.SettingModels
 
         [Display(Name= "Printer")]
         public int PrinterId { get; set; }
-
+        [Range(90,300, ErrorMessage ="Must be set betweent {1} and {2}.")]
         [Display(Name= "Extruder °C")]
         public double MaterialTemp { get; set; }
+        [Range(40, 200, ErrorMessage ="Must be set between {1} and {2}.")]
         [Display(Name= "Bed °C")]
         public double BedTemp { get; set; }
+
+        [Range(10, 150, ErrorMessage ="Must be set between {1} and {2},")]
         [Display(Name ="Speed mm/s")]
         public double Speed { get; set; }
 

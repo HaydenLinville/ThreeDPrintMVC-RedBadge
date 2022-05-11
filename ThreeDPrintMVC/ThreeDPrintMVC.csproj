@@ -195,6 +195,7 @@
     <Content Include="Content\img\green.jpeg" />
     <Content Include="Content\img\night.jpeg" />
     <Content Include="Content\img\rock.jpeg" />
+    <Content Include="Content\img\White.jpeg" />
     <Content Include="Content\img\yellow.jpeg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

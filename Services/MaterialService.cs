@@ -50,7 +50,7 @@ namespace Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var material = ctx.Materials.ToList();
+                var material = ctx.Materials.Where(e=> e.UserId == _userId).ToList();
                 IEnumerable<MaterialListSettingItem> mList = from s in material select new MaterialListSettingItem { MaterialId = s.MaterialId, MaterialInfo = s.MaterialBrand + " " + s.MaterialType.ToString() + " " + s.Color  };
 
                 return mList;

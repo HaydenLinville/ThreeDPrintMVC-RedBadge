@@ -43,16 +43,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PrinterModel)
             </td>
-           @if(item.Image.Count() != 0)
-                {
+            @if (item.Image.Count() != 0)
+            {
 
-            <td> <img class="img-thumbnail" width="60" height="60" src="/Printer/RetrieveImage/@item.PrinterId" alt="No Picture" /></td>
-           }
-           else
-                {
+                <td> <img class="img-thumbnail" width="60" height="60" src="/Printer/RetrieveImage/@item.PrinterId" alt="No Picture" /></td>
+            }
+            else
+            {
 
-               <td>N/A</td>
-                }
+                <td>N/A</td>
+            }
 
             <td>
                 <input type="button" value="Detail" class="btn btn-secondary btn-sm" onclick="window.location = '@Url.Action("Detail", new {id = item.PrinterId})'" />
@@ -63,6 +63,13 @@
     }
 
 </table>
-<div>
-    <input type="button" value="Add New Printer" class="btn btn-primary btn-lg" onclick="window.location = '@Url.Action("Create")'" />
+<div class="row">
+
+    <div class="ml-3">
+        <input type="button" value="Add New Printer" class="btn btn-primary btn-lg" onclick="window.location = '@Url.Action("Create")'" />
+    </div>
+
+    <div class="ml-3">
+        <input type="button" value="Home" class="btn btn-secondary btn-lg" onclick="window.location = '@Url.Action("Index", "Home")'" />
+    </div>
 </div>

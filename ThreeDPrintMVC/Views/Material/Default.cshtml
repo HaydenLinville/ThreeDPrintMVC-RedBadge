@@ -23,7 +23,7 @@
             Image
         </th>
         <th>
-            Update/Delete
+            Details
         </th>
     </tr>
 
@@ -51,13 +51,20 @@
             }
             <td>
                 <input type="button" value="Detail" class="btn btn-secondary btn-xs" onclick="window.location = '@Url.Action("DefaultDetail", new {id = item.MaterialId})'" />
-                
+
 
             </td>
         </tr>
     }
 
 </table>
-<div>
-    <input type="button" value="Add Your Own Material" class="btn btn-primary btn-lg" onclick="window.location = '@Url.Action("Create")'" />
+
+<div class="row">
+
+    <div class="ml-3">
+        <input type="button" value="Add Your Own Material" class="btn btn-primary btn-lg" onclick="window.location = '@Url.Action("Create")'" />
+    </div>
+    <div class="ml-3">
+        <input type="button" value="Home" class="btn btn-secondary btn-lg" onclick="window.location = '@Url.Action("Index", "Home")'" />
+    </div>
 </div>

@@ -53,13 +53,13 @@
             @if (item.Image.Count() != 0)
             {
                 <td>
-                    <img class="img-thumbnail" width="60" height="60" src="/Material/RetrieveMImage/@item.MaterialId" alt=""/>
+                    <img class="img-thumbnail" width="60" height="60" src="/Material/RetrieveMImage/@item.MaterialId" alt="" />
                 </td>
             }
-                else
-                {
-                    <td>N/A</td>
-                }
+            else
+            {
+                <td>N/A</td>
+            }
             <td>
                 <input type="button" value="Detail" class="btn btn-secondary btn-xs" onclick="window.location = '@Url.Action("Detail", new {id = item.MaterialId})'" />
                 <input type="button" value="Edit" class="btn btn-warning btn-xs" onclick="window.location = '@Url.Action("Edit", new {id = item.MaterialId})'" />
@@ -70,6 +70,14 @@
     }
 
 </table>
-<div>
+<div class="row">
+
+<div class="ml-3">
     <input type="button" value="Add New Material" class="btn btn-primary btn-lg" onclick="window.location = '@Url.Action("Create")'" />
+</div>
+
+<div class="ml-3">
+    <input type="button" value="Home" class="btn btn-secondary btn-lg" onclick="window.location = '@Url.Action("Index", "Home")'" />
+</div>
+
 </div>
