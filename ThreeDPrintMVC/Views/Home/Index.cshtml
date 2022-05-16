@@ -2,30 +2,106 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+
+<div class="jumbotron rounded-pill" style="background-image:url(../../Content/img/rock.jpeg)">
+    <h1 class="text-white">3D Printing Made Easy </h1>
+
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<div class="mr-0 ml-0 mt-5 text-white p-3 rounded-pill" style="background-image:url(../../Content/img/White.jpeg)">
+
+
+    <div>
+        <h3 class="text-center">
+            Examples
+        </h3>
+        <p>This website is built to help you 3d print successfully more often. By adding your own printer and material you can save custom settings that work for you. Try a few different settings with your new printer or your new material and save what works here. If you want to see some example of how this could work check out the printer or material examples below. </p>
+        <div class="d-flex justify-content-around flex-wrap">
+
+            <div>
+                <input type="button" value="See Printer Examples" class="btn btn-outline-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Default", "Printer")'" />
+            </div>
+            <div>
+                <input type="button" value="See Material Examples" class="btn btn-outline-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Default", "Material")'" />
+            </div>
+
+
+
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
 </div>
+
+
+
+
+@if (User.Identity.IsAuthenticated)
+
+{
+    <div class="d-flex flex-column mr-0 mt-5 ml-0 p-3 text-white rounded-pill" style="background-image:url(../../Content/img/green.jpeg)">
+
+        <div>
+            <h3 class="text-center">
+                Printer 
+            </h3>
+            <p>In the printer section you can add your own printer or add a printer you wish you had. You can customize the features of your printer and upload your own pictures. Your custom settings will be displayed with your individual printers. Below you can add your own, see all the printers you have, or get more information about printer related things.</p>
+            <div class="d-flex justify-content-around flex-wrap">
+
+                <div>
+                    <input type="button" value="Add Printer" class="btn btn-outline-dark btn-lg btn-block " onclick="window.location = '@Url.Action("Create", "Printer")'" />
+                </div>
+                <div>
+                    <input type="button" value="View Printers" class="btn btn-outline-dark btn-lg btn-block " onclick="window.location = '@Url.Action("Index", "Printer")'" />
+                </div>
+                <div>
+                    <input type="button" value="Printer Info" class="btn btn-outline-dark btn-lg btn-block " onclick="window.location = '@Url.Action("Info", "Printer")'" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mr-0 ml-0 mt-5 text-white p-3 rounded-pill" style="background-image:url(../../Content/img/yellow.jpeg)">
+
+
+        <div>
+            <h3 class="text-center">
+                Material
+            </h3>
+            <p>In the material section, much like the printer section you can add your own material. Keeping track of what material you have is now easier. Feel free to add your own material, view the material you already have uploaded, or get more information about material type. </p>
+            <div class="d-flex justify-content-around flex-wrap">
+
+                <div>
+                    <input type="button" value="Add Material" class="btn btn-outline-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Create", "Material")'" />
+                </div>
+                <div>
+                    <input type="button" value="View Material" class="btn btn-outline-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Index", "Material")'" />
+                </div>
+                <div>
+                    <input type="button" value="Material Info" class="btn btn-outline-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Info", "Material")'" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mr-0 ml-0 mt-5 text-white p-3 rounded-pill" style="background-image:url(../../Content/img/dblue.jpeg)">
+
+
+        <div>
+            <h3 class="text-center">
+                Custom Settings
+            </h3>
+            <p>Creating custom settings is the backbone of this website. After adding your printers and material try a few settings out. Once you have the perfect settings for your printer and your material add it below. Your custom settings will be displayed with your individual printers.</p>
+            <div class="d-flex justify-content-around flex-wrap">
+
+                <div>
+                    <input type="button" value="Create Custom Settings" class="btn btn-dark btn-lg btn-block" onclick="window.location = '@Url.Action("Create", "Setting")'" />
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+}
+

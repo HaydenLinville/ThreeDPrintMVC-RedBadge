@@ -1,0 +1,139 @@
+﻿@model Models.PrinterModels.PrinterEdit
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2 class="text-white rounded-pill p-3"style="background-image:url(../../Content/img/green.jpeg)">Update @Model.PrinterBand.ToString()</h2>
+
+
+@using (Html.BeginForm("Edit", "Printer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="col text-white">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.PrinterId)
+
+        <div class="col">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PrinterBand, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="">
+                    @Html.EditorFor(model => model.PrinterBand, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PrinterBand, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PrinterModel, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="">
+                    @Html.EditorFor(model => model.PrinterModel, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PrinterModel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+
+            <div class="row">
+                @Html.LabelFor(model => model.HasDualExtruder, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div>
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.HasDualExtruder)
+                        @Html.ValidationMessageFor(model => model.HasDualExtruder, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.CanAutoLevel, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div>
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.CanAutoLevel)
+                        @Html.ValidationMessageFor(model => model.CanAutoLevel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.HasHeatedBed, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div>
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.HasHeatedBed)
+                        @Html.ValidationMessageFor(model => model.HasHeatedBed, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.HasWifi, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div>
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.HasWifi)
+                        @Html.ValidationMessageFor(model => model.HasWifi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.CanUpgrade, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div>
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.CanUpgrade)
+                        @Html.ValidationMessageFor(model => model.CanUpgrade, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.HasCamera, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div>
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.HasCamera)
+                        @Html.ValidationMessageFor(model => model.HasCamera, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div>
+                    <input type="file" name="ImageData" id="ImageData" onchange="filecheck(this);" />
+                </div>
+            </div>
+            <div class="row">
+                <p class= "col-md-2">Current Image</p>
+            @if (Model.Image != null && Model.Image.Length > 0)
+            {
+
+                <div class="ml-md-2"><img class="img-fluid" width="150" height="150" src="/Printer/RetrieveImage/@Model.PrinterId" /></div>
+            }
+            else {
+                <div class="ml-md-2"><p>None</p></div>
+                }
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" />
+
+                <input type="button" value="Cancel" class="btn btn-secondary" onclick="goPrev()" />
+                <script>
+                    function goPrev() { window.history.back(); }
+                </script>
+
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

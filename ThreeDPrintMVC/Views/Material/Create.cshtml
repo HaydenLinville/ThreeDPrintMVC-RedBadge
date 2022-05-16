@@ -1,0 +1,86 @@
+﻿@model Models.Material.MaterialCreate
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2 class="text-warning">Create New Material</h2>
+
+@if (TempData.ContainsKey("NoMaterial"))
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+        @TempData["NoMaterial"]
+    </div>
+}
+
+
+@using (Html.BeginForm("Create", "Material", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="text-warning form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="col">
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaterialBrand, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div >
+                    @Html.EditorFor(model => model.MaterialBrand, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MaterialBrand, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+
+                @Html.LabelFor(model => model.MaterialType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.EnumDropDownListFor(model => model.MaterialType, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MaterialType, "", new { @class = "text-danger" })
+                </div>
+                </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div>
+                    <input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);" />
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="button" value="Cancel" class="btn btn-secondary" onclick="goPrev()" />
+                <script>
+                    function goPrev() { window.history.back(); }
+                </script>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

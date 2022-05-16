@@ -1,0 +1,181 @@
+﻿@model Models.PrinterModels.PrinterDetail
+
+@{
+    ViewBag.Title = "DefaltDetail";
+}
+
+
+<div class="d-flex row justify-content-between">
+
+
+    <div>
+
+        <h2 class="text-dark p-2 rounded-pill"style="background-image:url(../../Content/img/White.jpeg)">@Model.PrinterModel.ToString():</h2>
+        <div class="card text-success bg-dark border-success mb-3 p-2" style="max-width: 20rem;">
+            <div class="card-header bg-secondary text-light">Printer Info:</div>
+            @if (Model.Image != null)
+            {
+                <img class="card-img-top mt-1" src="/Printer/RetrieveImage/@Model.PrinterId" alt="" />
+
+            }
+            <div class="card-body bg-dark">
+                <h4 class="card-title"> @Html.DisplayFor(model => model.PrinterBrand)</h4>
+
+                <p class="card-text"> @Html.DisplayFor(model => model.PrinterModel)</p>
+
+                <div class="row">
+
+
+                    <div class="col">
+
+
+                        <p class="card-text">
+                            @Html.DisplayNameFor(model => model.HasDualExtruder):
+                        </p>
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.CanAutoLevel):
+                        <p />
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.HasHeatedBed): </p>
+
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.HasWifi):</p>
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.CanUpgrade):</p>
+
+
+                        <p class="card-text">
+                            @Html.DisplayNameFor(model => model.HasCamera):
+                        </p>
+                    </div>
+
+                    <div class="col">
+
+                        <p>
+                            @Html.DisplayFor(model => model.HasDualExtruder)
+                        </p>
+
+                        <p>
+                            @Html.DisplayFor(model => model.CanAutoLevel)
+                        </p>
+
+                        <p>@Html.DisplayFor(model => model.HasHeatedBed)</p>
+
+                        <p>
+                            @Html.DisplayFor(model => model.HasWifi)
+                        </p>
+
+                        <p>@Html.DisplayFor(model => model.CanUpgrade)</p>
+
+                        <p>
+                            @Html.DisplayFor(model => model.HasCamera)
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer bg-secondary">
+
+                <input type="button" value="Back to Printers" class="btn btn-dark btn-block" onclick="window.location= '@Url.Action("Default", "Printer")'" />
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        @if (Model.Settings.Count() != 0)
+        {
+
+            <table class="table table-hover border-dark">
+                <h2 class="text-dark p-2 rounded-pill"style="background-image:url(../../Content/img/White.jpeg)">Custom Settings for @Model.PrinterModel.ToString(): </h2>
+
+                <thead class="">
+                    <tr class="table-dark">
+
+                        <th class="text-dark" scope="col">
+                            @Html.DisplayNameFor(model => model.Settings.First().CustomSettingName)
+                        </th>
+
+                        <th class="text-dark" scope="col">
+                            @Html.DisplayNameFor(model => model.Settings.First().MaterialType)
+                        </th>
+
+                        <th class="text-dark" scope="col">
+                            @Html.DisplayNameFor(model => model.Settings.First().Color)
+                        </th>
+
+
+                        <th class="text-dark" scope="col">
+                            @Html.DisplayNameFor(model => model.Settings.First().BedTemp)
+                        </th>
+
+
+                        <th class="text-dark" scope="col">
+                            @Html.DisplayNameFor(model => model.Settings.First().MaterialTemp)
+                        </th>
+
+                        <th class="text-dark" scope="col">
+                            @Html.DisplayNameFor(model => model.Settings.First().Speed)
+                        </th>
+
+
+                    </tr>
+                </thead>
+                @foreach (var m in Model.Settings)
+                {
+                    <tbody>
+
+
+                        <tr class="table-primary">
+                            <td>
+                                @Html.DisplayFor(modelI => m.CustomSettingName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelI => m.MaterialType)
+                            </td>
+                            <td>
+                                <img class="img-thumbnail" width="60" height="60" src="/Material/RetrieveMImage/@m.MaterialId" />
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelI => m.BedTemp)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelI => m.MaterialTemp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelI => m.Speed)
+                            </td>
+
+
+
+
+
+
+                        </tr>
+                    </tbody>
+                }
+
+            </table>
+        }
+        <div class="row">
+
+            <div class="ml-3">
+                <input type="button" value="Add Your Own Printer" class="btn btn-primary" onclick="window.location= '@Url.Action("Create", "Printer")'" />
+            </div>
+            <div class="ml-3 ">
+                <input type="button" value="Home" class="btn btn-secondary" onclick="window.location= '@Url.Action("Index", "Home")'" />
+            </div>
+        </div>
+
+
+    </div>
+    <br />
+    <br />
+</div>
