@@ -20,8 +20,13 @@ namespace ThreeDPrintMVC
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+<<<<<<< HEAD
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/poppers.js"));
+=======
+                      "~/Scripts/bootstrap.js", 
+                      "~/ Scripts / poppers.js"));
+>>>>>>> develop
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

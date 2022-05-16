@@ -8,32 +8,70 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<body class="bg-dark">
+    <nav class="navbar navbar-expand-lg fixed-top bg-secondary">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            <div class="navbar-brand ">
+
+                @Html.ActionLink("3D Printer", "Index", "Home", null, new { @class = "text-white nav-link" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+            @if (User.Identity.IsAuthenticated)
+            {
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="text-white">Your Stuff</span>
+                </button>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="navbar-nav mr-auto">
+
+                        <li class="nav-item active m-2">@Html.ActionLink("Printers", "Index", "Printer", new { area = "" }, new { @class = "nav-link text-success" })</li>
+                        <li class="nav-item m-2">@Html.ActionLink("Materials", "Index", "Material", new { area = "" }, new { @class = "nav-link text-warning" })</li>
+                        <li class="nav-item m-2">@Html.ActionLink("Create Settings", "Create", "Setting", new { area = "" }, new { @class = "nav-link text-info" })</li>
+                    </ul>
+                </div>
+            }
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu">
+                <span class="text-white">Log Off</span>
+            </button>
+
+            <div class="collapse navbar-collapse navbar-brand form-inline my-2 my-lg-0 " id="navmenu">
+                <div class="row">
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <ul class="nav navbar-nav m-sm-auto nav-item">
+                                <li>
+
+                                    @Html.ActionLink($"Welcom Back {User.Identity.Name}", "Index", "Manage", null, new { @class = "nav-link text-white" })
+                                </li>
+                                <li>
+                                    <a class="nav-item nav-link text-white" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+
+                                </li>
+                            </ul>
+                        }
+
+                    }
+                    else
+                    {
+
+                        @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link text-white" })
+                        @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link text-white" })
+                    }
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+
+    </nav>
+
+    <div class="container body-content mt-5 pt-5">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p class="text-white text-center">&copy; @DateTime.Now.Year - 3D Printer Application</p>
         </footer>
     </div>
 

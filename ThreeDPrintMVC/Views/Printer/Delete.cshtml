@@ -1,0 +1,103 @@
+﻿@model Models.PrinterModels.PrinterDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="text-white rounded-pill p-3"style="background-image:url(../../Content/img/green.jpeg)">Delete @Model.PrinterBrand.ToString()</h2>
+
+<h3 class="text-white">Are you sure you want to delete this?</h3>
+<div class="d-flex justify-content-center">
+
+    <div>
+
+        <div class="card text-danger bg-dark border-danger mb-3 p-2" style="max-width: 20rem;">
+            <div class="card-header bg-secondary text-light">Printer Info:</div>
+            @if (Model.Image != null && Model.Image.Count() > 0)
+            {
+                <img class="card-img-top" src="/Printer/RetrieveImage/@Model.PrinterId" alt="" />
+
+            }
+            else
+            {
+                <img class="card-img-top" src="~/Content/img/noprinter.png" />
+            }
+            <div class="card-body bg-dark">
+                <h4 class="card-title"> @Html.DisplayFor(model => model.PrinterBrand)</h4>
+                <p class="card-text">  @Html.DisplayFor(model => model.PrinterModel)</p>
+                <div class="row">
+
+
+                    <div class="col">
+
+
+                        <p class="card-text">
+                            @Html.DisplayNameFor(model => model.HasDualExtruder):
+                        </p>
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.CanAutoLevel):
+                        <p />
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.HasHeatedBed): </p>
+
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.HasWifi):</p>
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.CanUpgrade):</p>
+
+
+                        <p class="card-text">
+                            @Html.DisplayNameFor(model => model.HasCamera):
+                        </p>
+                    </div>
+
+                    <div class="col">
+
+                        <p>
+                            @Html.DisplayFor(model => model.HasDualExtruder)
+                        </p>
+
+                        <p>
+                            @Html.DisplayFor(model => model.CanAutoLevel)
+                        </p>
+
+                        <p>@Html.DisplayFor(model => model.HasHeatedBed)</p>
+
+                        <p>
+                            @Html.DisplayFor(model => model.HasWifi)
+                        </p>
+
+                        <p>@Html.DisplayFor(model => model.CanUpgrade)</p>
+
+                        <p>
+                            @Html.DisplayFor(model => model.HasCamera)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-secondary">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color d-flex justify-content-between">
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                        <input type="button" value="Cancel" class="btn btn-light" onclick="goPrev()" />
+                        <script>
+                            function goPrev() { window.history.back(); }
+                        </script>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+
+
+   
+</div>

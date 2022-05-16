@@ -4,9 +4,9 @@
     ViewBag.Title = "Log in";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2 class="text-white">@ViewBag.Title.</h2>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8 text-white">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                        <input type="submit" value="Log in" class="btn btn-secondary" />
                     </div>
                 </div>
                 <p>
@@ -51,7 +51,7 @@
             }
         </section>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 text-white">
         <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>

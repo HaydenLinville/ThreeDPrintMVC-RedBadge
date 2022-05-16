@@ -1,0 +1,47 @@
+﻿@model Models.SettingModels.SettingDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="text-white p-3 rounded-pill"style="background-image:url(../../Content/img/dblue.jpeg)">Delete @Model.CustomSettingName</h2>
+
+<h3 class="text-white">Are you sure you want to delete @Model.CustomSettingName?</h3>
+<div class="text-white d-flex justify-content-center">
+
+    <div>
+
+        <div class="card text-danger bg-dark border-primary mb-3 p-2" style="max-width: 20rem;">
+            <div class="card-header bg-secondary text-light">Setting Info:</div>
+
+            <div class="card-body ">
+                <p class="card-title">@Html.DisplayNameFor(model => model.CustomSettingName): @Html.DisplayFor(model => model.CustomSettingName)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.Printer):  @Html.DisplayFor(model => model.Printer)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.Material):  @Html.DisplayFor(model => model.Material)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.MaterialTemp):  @Html.DisplayFor(model => model.MaterialTemp)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.BedTemp):  @Html.DisplayFor(model => model.BedTemp)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.Speed):  @Html.DisplayFor(model => model.Speed)</p>
+
+            </div>
+            <div class="card-footer bg-secondary">
+
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color d-flex justify-content-between">
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                        <input type="button" value="Cancel" class="btn btn-light" onclick="goPrev()" />
+                        <script>
+                            function goPrev() { window.history.back(); }
+                        </script>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

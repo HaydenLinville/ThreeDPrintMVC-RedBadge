@@ -23,6 +23,16 @@ namespace Data
         public bool CanAutoLevel { get; set; }
         [Required]
         public bool HasHeatedBed { get; set; }
+        [Required]
+        public bool HasWifi { get; set; }
+
+        [Required]
+        public bool CanUpgrade { get; set; }
+        [Required]
+        public bool HasCamera { get; set; }
+        
+
+        public byte[] Image { get; set; }
 
         public virtual List<Setting> Settings { get; set; }
     }

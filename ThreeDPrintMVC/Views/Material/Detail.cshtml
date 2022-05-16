@@ -1,0 +1,145 @@
+﻿@model Models.Material.MaterialDetail
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+
+
+<div class="d-flex justify-content-around" >
+    <div>
+
+        <h2 class="text-white p-3 rounded-pill" style="background-image:url(../../Content/img/yellow.jpeg)">@Model.MaterialBrand.ToString():</h2>
+        <div class="card text-warning bg-dark border-warning mb-3 p-2" style="max-width: 20rem;">
+            <div class="card-header bg-secondary text-light">Material Info:</div>
+            @if (Model.Image != null && Model.Image.Count() > 0)
+            {
+                <img class="card-img-top mt-1" src="/Material/RetrieveMImage/@Model.MaterialId" alt="" />
+
+            }
+            else
+            {
+                <img class="card-img-top mt-1" src="~/Content/img/nomaterial.png" width="300" height="300" />
+            }
+            <div class="card-body ">
+                <p class="card-title">@Html.DisplayNameFor(model => model.MaterialBrand): @Html.DisplayFor(model => model.MaterialBrand)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.MaterialType):  @Html.DisplayFor(model => model.MaterialType)</p>
+                <p class="card-text">@Html.DisplayNameFor(model => model.Color):  @Html.DisplayFor(model => model.Color)</p>
+
+            </div>
+            <div class="card-footer bg-secondary">
+
+                <div class="row justify-content-around">
+                    <input type="button" value="Edit" class="btn btn-warning" onclick="window.location= '@Url.Action("Edit", "Material", new {id = Model.MaterialId}, null )'" />
+
+                    <input type="button" value="Delete" class="btn btn-outline-danger" onclick="window.location= '@Url.Action("Delete", "Material", new {id = Model.MaterialId})'" />
+                </div>
+                <input type="button" value="Back to Material" class="btn btn-dark btn-block mt-1" onclick="window.location= '@Url.Action("Index", "Material")'" />
+            </div>
+        </div>
+    </div>
+
+
+    @if (Model.MaterialType.ToString() == "PETG")
+    {
+        <div>
+            <h2 class="text-dark rounded-pill p-3" style="background-image:url(../../Content/img/White.jpeg)">General Info:</h2>
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="bg-dark card-header h5">PETG</div>
+                <div class="card-body">
+
+                    <p class="card-text">More flexible than PLA or ABS. Considered Durable</p>
+                    <p>Recommended Extruder Temp: 220-235 °C</p>
+                    <p>Recommended Bed Temp: None Needed</p>
+                    <p>Density: 1270 (Kg/M<sub>3</sub>)</p>
+                </div>
+                <div class="card-footer bg-dark">
+                    <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
+
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.MaterialType.ToString() == "PLA")
+    {
+
+        <div>
+            <h2 class="text-dark rounded-pill p-3" style="background-image:url(../../Content/img/White.jpeg)">General Info:</h2>
+            <div class="card text-white bg-info mb-3 " style="max-width: 18rem;">
+                <div class="bg-dark card-header h5">PLA</div>
+                <div class="card-body">
+                    <p class="card-text">Easy to print and Biodegradable through only in very specific conditions.</p>
+                    <p>Recommended Extruder Temp: 180-230 °C</p>
+                    <p>Recommended Bed Temp: 60-80 °C</p>
+                    <p>Density: 1240 (Kg/M<sub>3</sub>)</p>
+                </div>
+                <div class="card-footer bg-dark">
+                    <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.MaterialType.ToString() == "ABS")
+    {
+
+        <div>
+            <h2 class="text-dark rounded-pill p-3" style="background-image:url(../../Content/img/White.jpeg)">General Info:</h2>
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="bg-dark card-header h5">ABS</div>
+                <div class="card-body">
+                    <p class="card-text">Durable and impact resitant.</p>
+                    <p>Recommended Extruder Temp: 210-250 °C</p>
+                    <p>Recommended Bed Temp: 50-100 °C</p>
+                    <p>Density: 1010 (Kg/M<sub>3</sub>)</p>
+                </div>
+                <div class="card-footer bg-dark">
+                    <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.MaterialType.ToString() == "PVA")
+    {
+
+        <div>
+            <h2 class="text-dark rounded-pill p-3" style="background-image:url(../../Content/img/White.jpeg)">General Info:</h2>
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="bg-dark card-header h5">PVA</div>
+                <div class="card-body">
+                    <p class="card-text">Dissolvable, water soluble, biodegradable, and oil resistant.</p>
+                    <p>Recommended Extruder Temp: 180-230 °C</p>
+                    <p>Recommended Bed Temp: None Needed</p>
+                    <p>Density: 1.19 (g/cm<sub>3</sub>)</p>
+                </div>
+                <div class="card-footer bg-dark">
+                    <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.MaterialType.ToString() == "Nylon")
+    {
+
+        <div>
+            <h2 class="text-dark rounded-pill p-3" style="background-image:url(../../Content/img/White.jpeg)">General Info:</h2>
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="bg-dark card-header h5">Nylon</div>
+                <div class="card-body">
+                    <p class="card-text">Strong, flexible, and durable.</p>
+                    <p>Recommended Extruder Temp: 220-260 °C</p>
+                    <p>Recommended Bed Temp: 50-100 °C</p>
+                    <p>Density: 1020 (Kg/M<sub>3</sub>)</p>
+                </div>
+                <div class="card-footer bg-dark">
+                    <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>

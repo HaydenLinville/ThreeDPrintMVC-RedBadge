@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ThreeDPrintMVC.Controllers
 {
+    [Authorize]
     public class SettingController : Controller
     {
         // GET: Setting
@@ -17,9 +18,81 @@ namespace ThreeDPrintMVC.Controllers
             return View();
         }
 
+        public ActionResult CreateWPrint(int id)
+        {
+            var ps = CreatePrinterService();
+            var ms = MService();
+            var mSelectList = ms.MaterialSelectList();
+
+            if(ms.GetMaterials().Count() == 0)
+            {
+                TempData["NoMaterial"] = "You need to have at least one material created before adding Custom Settings";
+                return RedirectToAction("Create", "Material"); 
+            }
+
+            var n = ps.GetPrinterById(id);
+            ViewBag.PrinterBrand = n.PrinterBrand;
+            ViewBag.PrinterId = n.PrinterId;
+            ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateWPrint(SettingCreate model, int id)
+        {
+            var ps = CreatePrinterService();
+            var ms = MService();
+            var mSelectList = ms.MaterialSelectList();
+
+
+            var printer = ps.GetPrinterById(id);
+            var pId = printer.PrinterId;
+            ViewBag.PrinterId = printer.PrinterId;
+            ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var src = SService();
+
+            if (src.CreateSettingWPrint(model, pId))
+            {
+                if(printer.HasHeatedBed == false)
+                { TempData["NoBed"] = $"Bed temp set to zero because {printer.PrinterBrand} has no heated bed."; };
+                TempData["SettingSave"] = $"{model.CustomSettingName} was created!";
+                return RedirectToAction("Detail", "Printer", new { id = pId });
+
+            }
+            ModelState.AddModelError("", "Setting could not be created");
+
+            return View(model);
+        }
+
         public ActionResult Create()
         {
-            
+            var ps = CreatePrinterService();
+            var ms = MService();
+            var mSelectList = ms.MaterialSelectList();
+            var pSelectList = ps.PrinterSelectList();
+            if(ps.GetPrinters().Count()==0)
+            {
+                TempData["NoPrinter"] = "You need to have at least one printer to create Custom Settings";
+                return RedirectToAction("Create", "Printer");
+            }
+
+            if (ms.GetMaterials().Count() == 0)
+            {
+                TempData["NoMaterial"] = "You need to have at least one material created before adding Custom Settings";
+                return RedirectToAction("Create", "Material");
+            }
+
+
+            ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
+            ViewBag.PrinterId = new SelectList(pSelectList, "PrinterId", "PrinterInfo");
             return View();
         }
 
@@ -27,43 +100,80 @@ namespace ThreeDPrintMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(SettingCreate model)
         {
-            if(!ModelState.IsValid)
+            var ps = CreatePrinterService();
+            var ms = MService();
+            var mSelectList = ms.MaterialSelectList();
+            var pSelectList = ps.PrinterSelectList();
+            ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
+            ViewBag.PrinterId = new SelectList(pSelectList, "PrinterId", "PrinterInfo");
+            if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
             var src = SService();
 
-            if(src.CreateSetting(model))
+            if (src.CreateSetting(model))
             {
-                return RedirectToAction("Detail", "PrinterController", new {id =model.PrinterId});
-                //play around with later to figure out how to get to details with the int id. 
+                return RedirectToAction("Detail", "Printer", new { id = model.PrinterId });
+                
             }
             return View(model);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int settingId, int printerId)
         {
+            var ps = CreatePrinterService();
+            var ms = MService();
+            var mSelectList = ms.MaterialSelectList();
+            var pSelectList = ps.PrinterSelectList();
+            ViewBag.PrinterId = new SelectList(pSelectList, "PrinterId", "PrinterInfo");
+            ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
+
             var srv = SService();
-            var setting = srv.GetSettingById(id);
-            return View(setting);
+            var setting = srv.GetSettingById(settingId);
+            var model = new SettingEdit 
+            { 
+                CustomSettingName = setting.CustomSettingName, 
+                BedTemp = setting.BedTemp, 
+                MaterialId = setting.MaterialId, 
+                PrinterId = setting.PrinterId, 
+                MaterialTemp = setting.MaterialTemp, 
+                SettingId = setting.SettingId, 
+                Speed = setting.Speed
+            };
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, SettingEdit model)
+        public ActionResult Edit(int settingId, int printerId, SettingEdit model)
         {
-            if(!ModelState.IsValid)
+            var ps = CreatePrinterService();
+            var ms = MService();
+            var pSelectList = ps.PrinterSelectList();
+            var mSelectList = ms.MaterialSelectList();
+            ViewBag.PrinterId = new SelectList(pSelectList, "PrinterId", "PrinterInfo");
+            ViewBag.MaterialId = new SelectList(mSelectList, "MaterialId", "MaterialInfo");
+
+            if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var srv = SService();
-            if(srv.UpdateSetting(model))
+            if (settingId != model.SettingId)
             {
-                return RedirectToAction("Detail", new {id = model.SettingId});
+                ModelState.AddModelError("", "Id does not match");
+                return View(model);
             }
 
+            var srv = SService();
+            if (srv.UpdateSetting(model, printerId))
+            {
+                TempData["SettingUpdate"] = $"You updated {model.CustomSettingName}";
+                return RedirectToAction("Detail", "Printer", new { id = model.PrinterId });
+            }
+            ModelState.AddModelError("", "Setting could not be updated.");
             return View(model);
         }
 
@@ -72,7 +182,7 @@ namespace ThreeDPrintMVC.Controllers
         {
             var srv = SService();
             var model = srv.GetSettingById(id);
-            return View();
+            return View(model);
 
         }
 
@@ -82,15 +192,18 @@ namespace ThreeDPrintMVC.Controllers
         public ActionResult DeleteSetting(int id)
         {
             var srv = SService();
+            var model = srv.GetSettingById(id);
+            var name = model.CustomSettingName;
+            var printerId = model.PrinterId;
             srv.DeleteSetting(id);
-
-            return RedirectToAction("Index", "PrinterController");
+            TempData["SettingSave"] = $"{name} Deleted!";
+            return RedirectToAction("Detail", "Printer", new { id = printerId });
         }
 
         public ActionResult Detail(int id)
         {
             var srv = SService();
-            var setting =srv.GetSettingById(id);
+            var setting = srv.GetSettingById(id);
             return View(setting);
             //return RedirectToAction("Index", "PrinterController");
         }
@@ -101,5 +214,20 @@ namespace ThreeDPrintMVC.Controllers
             var srv = new SettingService(user);
             return srv;
         }
+
+        private PrinterService CreatePrinterService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new PrinterService(userId);
+            return service;
+        }
+        private MaterialService MService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var srv = new MaterialService(userId);
+            return srv;
+
+        }
+
     }
 }

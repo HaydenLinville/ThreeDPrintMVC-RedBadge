@@ -1,0 +1,226 @@
+﻿@model Models.PrinterModels.PrinterDetail
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+
+@if (TempData.ContainsKey("SettingSave"))
+{
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["SettingSave"]
+    </div>
+}
+@if (TempData.ContainsKey("SettingUpdate"))
+{
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["SettingUpdate"]
+    </div>
+}
+@if (TempData.ContainsKey("NoBed"))
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["NoBed"]
+    </div>
+}
+
+<div class="d-flex row justify-content-between ">
+
+
+    <div>
+
+        <h2 class="text-white rounded-pill p-3" style="background-image:url(../../Content/img/green.jpeg)" >@Model.PrinterModel.ToString():</h2>
+        <div class="card text-success bg-dark border-success mb-3 p-2" style="max-width: 20rem;">
+            <div class="card-header bg-secondary text-light">Printer Info:</div>
+            @if (Model.Image != null && Model.Image.Count() > 0)
+            {
+                <img class="card-img-top" src="/Printer/RetrieveImage/@Model.PrinterId" alt="" />
+
+            }
+            else
+            {
+                <img class="card-img-top" src="~/Content/img/noprinter.png" />
+            }
+            <div class="card-body bg-dark">
+                <h4 class="card-title"> @Html.DisplayFor(model => model.PrinterBrand)</h4>
+                <p class="card-text">  @Html.DisplayFor(model => model.PrinterModel)</p>
+                <div class="row">
+
+
+                    <div class="col">
+
+
+                        <p class="card-text">
+                            @Html.DisplayNameFor(model => model.HasDualExtruder):
+                        </p>
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.CanAutoLevel):
+                        <p />
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.HasHeatedBed): </p>
+
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.HasWifi):</p>
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.CanUpgrade):</p>
+
+
+                        <p class="card-text">
+                            @Html.DisplayNameFor(model => model.HasCamera):
+                        </p>
+                    </div>
+
+                    <div class="col">
+
+                        <p>
+                            @Html.DisplayFor(model => model.HasDualExtruder)
+                        </p>
+
+                        <p>
+                            @Html.DisplayFor(model => model.CanAutoLevel)
+                        </p>
+
+                        <p>@Html.DisplayFor(model => model.HasHeatedBed)</p>
+
+                        <p>
+                            @Html.DisplayFor(model => model.HasWifi)
+                        </p>
+
+                        <p>@Html.DisplayFor(model => model.CanUpgrade)</p>
+
+                        <p>
+                            @Html.DisplayFor(model => model.HasCamera)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-secondary">
+                <div class="row justify-content-around">
+
+                    <input type="button" value="Edit" class="btn btn-warning" onclick="window.location= '@Url.Action("Edit", "Printer", new {id = Model.PrinterId}, null )'" />
+                    
+                    <input type="button" value="Delete" class="btn btn-outline-danger" onclick="window.location= '@Url.Action("Delete", "Printer", new {id = Model.PrinterId})'" />
+                
+                </div>
+
+                <input type="button" value="Back to Printers" class="btn btn-dark btn-block mt-1" onclick="window.location= '@Url.Action("Index", "Printer")'" />
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        @if (Model.Settings.Count() != 0)
+        {
+
+            <table class="table table-hover border-dark">
+                <h2 class="text-white rounded-pill p-3" style="background-image:url(../../Content/img/dblue.jpeg)" >Custom Settings for @Model.PrinterModel.ToString(): </h2>
+
+                <thead class="">
+                    <tr class="table-dark">
+
+                        <th class="text-dark" scope="col">
+                            @Html.DisplayNameFor(model => model.Settings.First().CustomSettingName)
+                        </th>
+                        <th class="text-dark" scope="col">
+                            @Html.DisplayNameFor(model => model.Settings.First().MaterialType)
+                        </th>
+
+                        <th class="text-dark" scope="col">
+                            @Html.DisplayNameFor(model => model.Settings.First().Color)
+                        </th>
+
+
+                        <th class="text-dark" scope="col">
+                            @Html.DisplayNameFor(model => model.Settings.First().BedTemp)
+                        </th>
+
+
+                        <th class="text-dark" scope="col">
+                            @Html.DisplayNameFor(model => model.Settings.First().MaterialTemp)
+                        </th>
+
+                        <th class="text-dark" scope="col">
+                            @Html.DisplayNameFor(model => model.Settings.First().Speed)
+                        </th>
+                        <th class="text-dark" scope="col">
+                            Update/Delete
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var m in Model.Settings)
+                {
+                    <tbody>
+
+
+                        <tr class="table-primary">
+                            <td>
+                                @Html.DisplayFor(modelI => m.CustomSettingName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelI => m.MaterialType)
+                            </td>
+
+                            @if (m.Image != null && m.Image.Length > 0)
+                            {
+                                <td>
+                                    <img class="img-thumbnail" width="60" height="60" src="/Material/RetrieveMImage/@m.MaterialId" />
+                                </td>
+                            }
+                            else
+                            {
+                                <td>@Html.DisplayFor(modelI => m.Color)</td>
+                            }
+
+
+                            <td>
+                                @Html.DisplayFor(modelI => m.BedTemp)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelI => m.MaterialTemp)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelI => m.Speed)
+                            </td>
+                            <td>
+                                <input type="button" value="Edit" class="btn btn-warning btn-xs" onclick="window.location = '@Url.Action("Edit", "Setting", new {settingId = m.SettingId, printerId = Model.PrinterId})'" />
+                                <input type="button" value="Delete" class="btn btn-outline-danger btn-xs" onclick="window.location = '@Url.Action("Delete", "Setting", new {id = m.SettingId})'" />
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+
+            </table>
+        }
+        <div class="row">
+
+            <div class="ml-3">
+                <input type="button" value="Add New Custom Settings" class="btn btn-primary" onclick="window.location= '@Url.Action("CreateWPrint", "Setting", new {id = Model.PrinterId})'" />
+            </div>
+            <div class="ml-3">
+                <input type="button" value="Home" class="btn btn-secondary" onclick="window.location= '@Url.Action("Index", "Home")'" />
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+</div>
+
