@@ -341,8 +341,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-<<<<<<< HEAD
-=======
     <Content Include="Views\Printer\Index.cshtml" />
     <Content Include="Views\Printer\Create.cshtml" />
     <Content Include="Views\Printer\Detail.cshtml" />
@@ -358,7 +356,6 @@
     <Content Include="Views\Setting\Delete.cshtml" />
     <Content Include="Views\Setting\Detail.cshtml" />
     <Content Include="Views\Setting\Create.cshtml" />
->>>>>>> develop
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -369,15 +366,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-<<<<<<< HEAD
-=======
     <Content Include="Views\Material\Info.cshtml" />
     <Content Include="Views\Printer\Default.cshtml" />
     <Content Include="Views\Printer\DefaultDetail.cshtml" />
     <Content Include="Views\Material\Default.cshtml" />
     <Content Include="Views\Material\DefaultDetail.cshtml" />
     <Content Include="Views\Printer\Info.cshtml" />
->>>>>>> develop
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -31,9 +31,17 @@
                 </div>
             }
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu">
+            @if (Request.IsAuthenticated)
+            {
+
                 <span class="text-white">Log Off</span>
-            </button>
+            }
+            else
+            {
+                <span class="text-white">Login</span>
+            }
+        </button>
 
             <div class="collapse navbar-collapse navbar-brand form-inline my-2 my-lg-0 " id="navmenu">
                 <div class="row">
