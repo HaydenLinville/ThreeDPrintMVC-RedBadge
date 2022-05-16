@@ -6,10 +6,10 @@
 
 
 
-<div class="d-flex justify-content-around">
+<div class="d-flex justify-content-around" >
     <div>
 
-        <h2 class="text-white">@Model.MaterialBrand.ToString():</h2>
+        <h2 class="text-white p-3 rounded-pill" style="background-image:url(../../Content/img/yellow.jpeg)">@Model.MaterialBrand.ToString():</h2>
         <div class="card text-warning bg-dark border-warning mb-3 p-2" style="max-width: 20rem;">
             <div class="card-header bg-secondary text-light">Material Info:</div>
             @if (Model.Image != null && Model.Image.Count() > 0)
@@ -19,7 +19,7 @@
             }
             else
             {
-                <img class="card-img-top mt-1" src="~/Content/img/nomaterial.png" />
+                <img class="card-img-top mt-1" src="~/Content/img/nomaterial.png" width="300" height="300" />
             }
             <div class="card-body ">
                 <p class="card-title">@Html.DisplayNameFor(model => model.MaterialBrand): @Html.DisplayFor(model => model.MaterialBrand)</p>
@@ -43,7 +43,7 @@
     @if (Model.MaterialType.ToString() == "PETG")
     {
         <div>
-            <h2 class="text-white">General Info:</h2>
+            <h2 class="text-dark rounded-pill p-3" style="background-image:url(../../Content/img/White.jpeg)">General Info:</h2>
             <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
                 <div class="bg-dark card-header h5">PETG</div>
                 <div class="card-body">
@@ -65,7 +65,7 @@
     {
 
         <div>
-            <h2 class="text-white">General Info:</h2>
+            <h2 class="text-dark rounded-pill p-3" style="background-image:url(../../Content/img/White.jpeg)">General Info:</h2>
             <div class="card text-white bg-info mb-3 " style="max-width: 18rem;">
                 <div class="bg-dark card-header h5">PLA</div>
                 <div class="card-body">
@@ -85,7 +85,7 @@
     {
 
         <div>
-            <h2 class="text-white">General Info:</h2>
+            <h2 class="text-dark rounded-pill p-3" style="background-image:url(../../Content/img/White.jpeg)">General Info:</h2>
             <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
                 <div class="bg-dark card-header h5">ABS</div>
                 <div class="card-body">
@@ -105,7 +105,7 @@
     {
 
         <div>
-            <h2 class="text-white">General Info:</h2>
+            <h2 class="text-dark rounded-pill p-3" style="background-image:url(../../Content/img/White.jpeg)">General Info:</h2>
             <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
                 <div class="bg-dark card-header h5">PVA</div>
                 <div class="card-body">
@@ -125,7 +125,7 @@
     {
 
         <div>
-            <h2 class="text-white">General Info:</h2>
+            <h2 class="text-dark rounded-pill p-3" style="background-image:url(../../Content/img/White.jpeg)">General Info:</h2>
             <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
                 <div class="bg-dark card-header h5">Nylon</div>
                 <div class="card-body">

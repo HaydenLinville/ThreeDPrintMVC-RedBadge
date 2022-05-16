@@ -4,14 +4,14 @@
     ViewBag.Title = "Edit";
 }
 
-<h2 class="text-warning">Update @Model.MaterialBrand</h2>
+<h2 class="text-white p-3 rounded-pill" style="background-image:url(../../Content/img/yellow.jpeg)">Update @Model.MaterialBrand</h2>
 
 
 @using (Html.BeginForm("Edit", "Material", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
-    <div class="col text-warning">
+    <div class="col text-white">
 
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })

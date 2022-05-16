@@ -4,14 +4,14 @@
     ViewBag.Title = "Edit";
 }
 
-<h2 class="text-primary">Update @Model.CustomSettingName.ToString()</h2>
+<h2 class="text-white p-3 rounded-pill"style="background-image:url(../../Content/img/dblue.jpeg)">Update @Model.CustomSettingName.ToString()</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
-<div class="form-horizontal text-primary">
+<div class="form-horizontal text-white">
     
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
