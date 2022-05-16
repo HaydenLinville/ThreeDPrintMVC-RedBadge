@@ -194,6 +194,8 @@
     <Content Include="Content\img\dblue.jpeg" />
     <Content Include="Content\img\green.jpeg" />
     <Content Include="Content\img\night.jpeg" />
+    <Content Include="Content\img\nomaterial.png" />
+    <Content Include="Content\img\noprinter.png" />
     <Content Include="Content\img\rock.jpeg" />
     <Content Include="Content\img\White.jpeg" />
     <Content Include="Content\img\yellow.jpeg" />

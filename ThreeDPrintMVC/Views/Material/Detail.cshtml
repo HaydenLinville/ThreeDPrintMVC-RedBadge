@@ -10,12 +10,16 @@
     <div>
 
         <h2 class="text-white">@Model.MaterialBrand.ToString():</h2>
-        <div class="card text-warning bg-secondary border-warning mb-3" style="max-width: 20rem;">
-            <div class="card-header bg-dark text-light">Material Info:</div>
-            @if (Model.Image != null)
+        <div class="card text-warning bg-dark border-warning mb-3 p-2" style="max-width: 20rem;">
+            <div class="card-header bg-secondary text-light">Material Info:</div>
+            @if (Model.Image != null && Model.Image.Count() > 0)
             {
-                <img class="card-img-top" src="/Material/RetrieveMImage/@Model.MaterialId" alt="" />
+                <img class="card-img-top mt-1" src="/Material/RetrieveMImage/@Model.MaterialId" alt="" />
 
+            }
+            else
+            {
+                <img class="card-img-top mt-1" src="~/Content/img/nomaterial.png" />
             }
             <div class="card-body ">
                 <p class="card-title">@Html.DisplayNameFor(model => model.MaterialBrand): @Html.DisplayFor(model => model.MaterialBrand)</p>
@@ -23,11 +27,14 @@
                 <p class="card-text">@Html.DisplayNameFor(model => model.Color):  @Html.DisplayFor(model => model.Color)</p>
 
             </div>
-            <div class="card-footer bg-dark">
+            <div class="card-footer bg-secondary">
 
-                <input type="button" value="Edit" class="btn btn-warning" onclick="window.location= '@Url.Action("Edit", "Material", new {id = Model.MaterialId}, null )'" />
-                <input type="button" value="Delete" class="btn btn-outline-danger" onclick="window.location= '@Url.Action("Delete", "Material", new {id = Model.MaterialId})'" />
-                <input type="button" value="Back to Material" class="btn btn-light" onclick="window.location= '@Url.Action("Index", "Material")'" />
+                <div class="row justify-content-around">
+                    <input type="button" value="Edit" class="btn btn-warning" onclick="window.location= '@Url.Action("Edit", "Material", new {id = Model.MaterialId}, null )'" />
+
+                    <input type="button" value="Delete" class="btn btn-outline-danger" onclick="window.location= '@Url.Action("Delete", "Material", new {id = Model.MaterialId})'" />
+                </div>
+                <input type="button" value="Back to Material" class="btn btn-dark btn-block mt-1" onclick="window.location= '@Url.Action("Index", "Material")'" />
             </div>
         </div>
     </div>
@@ -40,7 +47,7 @@
             <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
                 <div class="bg-dark card-header h5">PETG</div>
                 <div class="card-body">
-                    
+
                     <p class="card-text">More flexible than PLA or ABS. Considered Durable</p>
                     <p>Recommended Extruder Temp: 220-235 °C</p>
                     <p>Recommended Bed Temp: None Needed</p>

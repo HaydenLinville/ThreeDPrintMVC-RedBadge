@@ -15,18 +15,18 @@ namespace Models.PrinterModels
         public string PrinterBrand { get; set; }
         [Display(Name = "Model")]
         public string PrinterModel { get; set; }
-        [Display(Name = "Has Dual Extruder")]
+        [Display(Name = "Dual Extruder")]
         public bool HasDualExtruder { get; set; }
-        [Display(Name = "Can Level Bed")]
+        [Display(Name = "Auto Level Bed")]
         public bool CanAutoLevel { get; set; }
-        [Display(Name = "Has Heated Bed")]
+        [Display(Name = "Heated Bed")]
         public bool HasHeatedBed { get; set; }
        
-        [Display(Name = "Has Wifi")]
+        [Display(Name = "Wifi")]
         public bool HasWifi { get; set; }
-        [Display(Name = "Is Upgradable")]
+        [Display(Name = "Upgradable")]
         public bool CanUpgrade { get; set; }
-        [Display(Name = "Has Camera")]
+        [Display(Name = "Camera")]
         public bool HasCamera { get; set; }
         public byte[] Image { get; set; }
         public List<SettingPrinterDisplay> Settings { get; set; }

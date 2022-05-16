@@ -13,12 +13,16 @@
     <div>
 
 
-        <div class="card text-warning bg-secondary border-warning mb-3" style="max-width: 20rem;">
-            <div class="card-header bg-dark text-light">Material Info:</div>
-            @if (Model.Image != null)
+        <div class="card text-warning bg-dark border-warning mb-3 p-2" style="max-width: 20rem;">
+            <div class="card-header bg-secondary text-light">Material Info:</div>
+            @if (Model.Image != null && Model.Image.Count() > 0)
             {
-                <img class="card-img-top" src="/Material/RetrieveMImage/@Model.MaterialId" alt="" />
+                <img class="card-img-top mt-1" src="/Material/RetrieveMImage/@Model.MaterialId" alt="" />
 
+            }
+            else
+            {
+                <img class="card-img-top mt-1" src="~/Content/img/nomaterial.png" />
             }
             <div class="card-body ">
                 <p class="card-title">@Html.DisplayNameFor(model => model.MaterialBrand): @Html.DisplayFor(model => model.MaterialBrand)</p>
@@ -26,15 +30,15 @@
                 <p class="card-text">@Html.DisplayNameFor(model => model.Color):  @Html.DisplayFor(model => model.Color)</p>
 
             </div>
-            <div class="card-footer bg-dark">
+            <div class="card-footer bg-secondary">
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
 
-                    <div class="col-md-offset-1 col-md-11">
+                    <div class="col-md-offset-1 col-md-11 d-flex justify-content-between ">
                         <input type="submit" value="Delete" class="btn btn-danger" />
 
-                        <input type="button" value="Cancel" class="btn btn-secondary" onclick="goPrev()" />
+                        <input type="button" value="Cancel" class="btn btn-light" onclick="goPrev()" />
                         <script>
                             function goPrev() { window.history.back(); }
                         </script>

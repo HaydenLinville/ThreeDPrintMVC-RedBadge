@@ -5,32 +5,82 @@
 }
 
 
-<div class="d-flex row justify-content-between ">
+<div class="d-flex row justify-content-between">
 
 
     <div>
 
         <h2 class="text-white">@Model.PrinterModel.ToString():</h2>
-        <div class="card text-success bg-dark border-success mb-3" style="max-width: 20rem;">
+        <div class="card text-success bg-dark border-success mb-3 p-2" style="max-width: 20rem;">
             <div class="card-header bg-secondary text-light">Printer Info:</div>
             @if (Model.Image != null)
             {
-                <img class="card-img-top" src="/Printer/RetrieveImage/@Model.PrinterId" alt="" />
+                <img class="card-img-top mt-1" src="/Printer/RetrieveImage/@Model.PrinterId" alt="" />
 
             }
-        <div class="card-body bg-dark">
-            <h4 class="card-title">@Html.DisplayNameFor(model => model.PrinterBrand): @Html.DisplayFor(model => model.PrinterBrand)</h4>
-            <p class="card-text">@Html.DisplayNameFor(model => model.PrinterModel):  @Html.DisplayFor(model => model.PrinterModel)</p>
-            <p class="card-text">@Html.DisplayNameFor(model => model.HasDualExtruder):  @Html.DisplayFor(model => model.HasDualExtruder)</p>
-            <p class="card-text">@Html.DisplayNameFor(model => model.CanAutoLevel):  @Html.DisplayFor(model => model.CanAutoLevel)</p>
-            <p class="card-text">@Html.DisplayNameFor(model => model.HasHeatedBed):  @Html.DisplayFor(model => model.HasHeatedBed)</p>
-            <p class="card-text">@Html.DisplayNameFor(model => model.HasWifi): @Html.DisplayFor(model => model.HasWifi)</p>
-            <p class="card-text">@Html.DisplayNameFor(model => model.CanUpgrade):  @Html.DisplayFor(model => model.CanUpgrade)</p>
-            <p class="card-text">@Html.DisplayNameFor(model => model.HasCamera):  @Html.DisplayFor(model => model.HasCamera)</p>
-        </div>
+            <div class="card-body bg-dark">
+                <h4 class="card-title"> @Html.DisplayFor(model => model.PrinterBrand)</h4>
+
+                <p class="card-text"> @Html.DisplayFor(model => model.PrinterModel)</p>
+
+                <div class="row">
+
+
+                    <div class="col">
+
+
+                        <p class="card-text">
+                            @Html.DisplayNameFor(model => model.HasDualExtruder):
+                        </p>
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.CanAutoLevel):
+                        <p />
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.HasHeatedBed): </p>
+
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.HasWifi):</p>
+
+
+                        <p class="card-text">@Html.DisplayNameFor(model => model.CanUpgrade):</p>
+
+
+                        <p class="card-text">
+                            @Html.DisplayNameFor(model => model.HasCamera):
+                        </p>
+                    </div>
+
+                    <div class="col">
+
+                        <p>
+                            @Html.DisplayFor(model => model.HasDualExtruder)
+                        </p>
+
+                        <p>
+                            @Html.DisplayFor(model => model.CanAutoLevel)
+                        </p>
+
+                        <p>@Html.DisplayFor(model => model.HasHeatedBed)</p>
+
+                        <p>
+                            @Html.DisplayFor(model => model.HasWifi)
+                        </p>
+
+                        <p>@Html.DisplayFor(model => model.CanUpgrade)</p>
+
+                        <p>
+                            @Html.DisplayFor(model => model.HasCamera)
+                        </p>
+                    </div>
+                </div>
+
+            </div>
             <div class="card-footer bg-secondary">
 
-                <input type="button" value="Back to Printers" class="btn btn-light btn-block" onclick="window.location= '@Url.Action("Default", "Printer")'" />
+                <input type="button" value="Back to Printers" class="btn btn-dark btn-block" onclick="window.location= '@Url.Action("Default", "Printer")'" />
             </div>
         </div>
     </div>
@@ -116,12 +166,12 @@
         }
         <div class="row">
 
-        <div class="ml-md-3">
-            <input type="button" value="Add Your Own Printer" class="btn btn-primary" onclick="window.location= '@Url.Action("Create", "Printer")'" />
-        </div>
-        <div class="ml-md-3">
-            <input type="button" value="Home" class="btn btn-secondary" onclick="window.location= '@Url.Action("Index", "Home")'" />
-        </div>
+            <div class="ml-3">
+                <input type="button" value="Add Your Own Printer" class="btn btn-primary" onclick="window.location= '@Url.Action("Create", "Printer")'" />
+            </div>
+            <div class="ml-3 ">
+                <input type="button" value="Home" class="btn btn-secondary" onclick="window.location= '@Url.Action("Index", "Home")'" />
+            </div>
         </div>
 
 

@@ -4,7 +4,20 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="text-white">Your Printers</h2>
+
+<div class="row d-flex justify-content-between" >
+
+    <h2 class="text-white">Your Printers</h2>
+    <div class="row mr-1">
+
+        <div class="ml-3">
+            <input type="button" value="Add New Printer" class="btn btn-primary btn-lg" onclick="window.location = '@Url.Action("Create")'" />
+        </div>
+
+        
+    </div>
+
+</div>
 
 <br />
 
@@ -19,57 +32,53 @@
     </div>
 }
 
-<table class="table table-hover border-dark">
-    <thead class="">
-        <tr class="table-dark">
-            <th class="text-dark" scope="col">
-                @Html.DisplayNameFor(model => model.PrinterBrand)
-            </th>
-            <th class="text-dark" scope="col">
-                @Html.DisplayNameFor(model => model.PrinterModel)
-            </th>
-            <th class="text-dark">Image</th>
-            <th class="text-dark" scope="col">Update/Delete</th>
-        </tr>
-    </thead>
 
+
+<div class="d-flex flex-lg-row flex-column align-items-md-center justify-content-lg-center">
     @foreach (var item in Model)
     {
-        <tr class="table-success">
 
-            <td>
-                @Html.DisplayFor(modelItem => item.PrinterBrand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrinterModel)
-            </td>
-            @if (item.Image.Count() != 0)
+
+        <div class="col-2 p-2 mr-4 card text-success bg-dark border-success mb-3" style="max-width: 20rem;">
+            <div class="card-header bg-secondary text-light">@Html.DisplayFor(Modelitem => item.PrinterBrand)</div>
+            @if (item.Image != null && item.Image.Count() > 0)
             {
+                <img class="card-img-top mt-1" src="/Printer/RetrieveImage/@item.PrinterId" alt="" />
 
-                <td> <img class="img-thumbnail" width="60" height="60" src="/Printer/RetrieveImage/@item.PrinterId" alt="No Picture" /></td>
             }
             else
             {
-
-                <td>N/A</td>
+                <img class="card-img-top mt-1" src="~/Content/img/noprinter.png" />
             }
+            <div class="card-body bg-dark">
 
-            <td>
-                <input type="button" value="Detail" class="btn btn-secondary btn-sm" onclick="window.location = '@Url.Action("Detail", new {id = item.PrinterId})'" />
-                <input type="button" value="Edit" class="btn btn-warning btn-sm" onclick="window.location = '@Url.Action("Edit", new {id = item.PrinterId})'" />
-                <input type="button" value="Delete" class="btn btn-danger btn-sm" onclick="window.location = '@Url.Action("Delete", new {id = item.PrinterId})'" />
-            </td>
-        </tr>
+                <p class="card-text"> @Html.DisplayFor(Modelitem => item.PrinterModel)</p>
+
+            </div>
+            <div class="d-table-row card-footer bg-secondary">
+                <div class="row justify-content-around">
+
+                    <input type="button" value="Edit" class="btn btn-warning btn-sm" onclick="window.location = '@Url.Action("Edit", new {id = item.PrinterId})'" />
+
+                    <input type="button" value="Delete" class="btn btn-outline-danger btn-sm" onclick="window.location = '@Url.Action("Delete", new {id = item.PrinterId})'" />
+
+                </div>
+
+
+                <input type="button" value="Detail" class="btn btn-dark btn-sm btn-block mt-1" onclick="window.location = '@Url.Action("Detail", new {id = item.PrinterId})'" />
+
+            </div>
+        </div>
+
     }
 
-</table>
-<div class="row">
 
-    <div class="ml-3">
-        <input type="button" value="Add New Printer" class="btn btn-primary btn-lg" onclick="window.location = '@Url.Action("Create")'" />
-    </div>
-
-    <div class="ml-3">
-        <input type="button" value="Home" class="btn btn-secondary btn-lg" onclick="window.location = '@Url.Action("Index", "Home")'" />
-    </div>
 </div>
+
+<div class="ml-3">
+    <input type="button" value="Home" class="btn btn-secondary btn-lg btn-block" onclick="window.location = '@Url.Action("Index", "Home")'" />
+</div>
+
+
+
+

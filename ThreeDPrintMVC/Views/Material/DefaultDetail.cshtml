@@ -10,11 +10,11 @@
     <div>
 
         <h2 class="text-white">@Model.MaterialBrand.ToString():</h2>
-        <div class="card text-warning bg-secondary border-warning mb-3" style="max-width: 20rem;">
-            <div class="card-header bg-dark text-light">Material Info:</div>
+        <div class="card text-warning bg-dark border-warning mb-3 p-2" style="max-width: 20rem;">
+            <div class="card-header bg-secondary text-light">Material Info:</div>
             @if (Model.Image != null)
             {
-                <img class="card-img-top" src="/Material/RetrieveMImage/@Model.MaterialId" alt="" />
+                <img class="card-img-top mt-1" src="/Material/RetrieveMImage/@Model.MaterialId" alt="" />
 
             }
             <div class="card-body ">
@@ -23,10 +23,10 @@
                 <p class="card-text">@Html.DisplayNameFor(model => model.Color):  @Html.DisplayFor(model => model.Color)</p>
 
             </div>
-            <div class="card-footer bg-dark">
+            <div class="card-footer bg-secondary">
 
-                
-                <input type="button" value="Back to Material" class="btn btn-light btn-block" onclick="window.location= '@Url.Action("Default", "Material")'" />
+
+                <input type="button" value="Back to Material" class="btn btn-dark btn-block" onclick="window.location= '@Url.Action("Default", "Material")'" />
             </div>
         </div>
     </div>
@@ -35,12 +35,15 @@
     @if (Model.MaterialType.ToString() == "PETG")
     {
         <div>
-            <h2 class="text-white">Info:</h2>
+            <h2 class="text-white">General Info:</h2>
             <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-                <div class="bg-dark card-header">Header</div>
+                <div class="bg-dark card-header h5">PETG</div>
                 <div class="card-body">
-                    <h5 class="card-title">Success card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                    <p class="card-text">More flexible than PLA or ABS. Considered Durable</p>
+                    <p>Recommended Extruder Temp: 220-235 °C</p>
+                    <p>Recommended Bed Temp: None Needed</p>
+                    <p>Density: 1270 (Kg/M<sub>3</sub>)</p>
                 </div>
                 <div class="card-footer bg-dark">
                     <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
@@ -54,12 +57,14 @@
     {
 
         <div>
-            <h2 class="text-white">Info:</h2>
-            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-                <div class="bg-dark card-header">Header</div>
+            <h2 class="text-white">General Info:</h2>
+            <div class="card text-white bg-info mb-3 " style="max-width: 18rem;">
+                <div class="bg-dark card-header h5">PLA</div>
                 <div class="card-body">
-                    <h5 class="card-title">Success card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Easy to print and Biodegradable through only in very specific conditions.</p>
+                    <p>Recommended Extruder Temp: 180-230 °C</p>
+                    <p>Recommended Bed Temp: 60-80 °C</p>
+                    <p>Density: 1240 (Kg/M<sub>3</sub>)</p>
                 </div>
                 <div class="card-footer bg-dark">
                     <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
@@ -72,12 +77,14 @@
     {
 
         <div>
-            <h2 class="text-white">Info:</h2>
+            <h2 class="text-white">General Info:</h2>
             <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-                <div class="bg-dark card-header">Header</div>
+                <div class="bg-dark card-header h5">ABS</div>
                 <div class="card-body">
-                    <h5 class="card-title">Success card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Durable and impact resitant.</p>
+                    <p>Recommended Extruder Temp: 210-250 °C</p>
+                    <p>Recommended Bed Temp: 50-100 °C</p>
+                    <p>Density: 1010 (Kg/M<sub>3</sub>)</p>
                 </div>
                 <div class="card-footer bg-dark">
                     <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
@@ -90,12 +97,14 @@
     {
 
         <div>
-            <h2 class="text-white">Info:</h2>
+            <h2 class="text-white">General Info:</h2>
             <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-                <div class="bg-dark card-header">Header</div>
+                <div class="bg-dark card-header h5">PVA</div>
                 <div class="card-body">
-                    <h5 class="card-title">Success card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Dissolvable, water soluble, biodegradable, and oil resistant.</p>
+                    <p>Recommended Extruder Temp: 180-230 °C</p>
+                    <p>Recommended Bed Temp: None Needed</p>
+                    <p>Density: 1.19 (g/cm<sub>3</sub>)</p>
                 </div>
                 <div class="card-footer bg-dark">
                     <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
@@ -108,12 +117,14 @@
     {
 
         <div>
-            <h2 class="text-white">Info:</h2>
+            <h2 class="text-white">General Info:</h2>
             <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-                <div class="bg-dark card-header">Header</div>
+                <div class="bg-dark card-header h5">Nylon</div>
                 <div class="card-body">
-                    <h5 class="card-title">Success card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Strong, flexible, and durable.</p>
+                    <p>Recommended Extruder Temp: 220-260 °C</p>
+                    <p>Recommended Bed Temp: 50-100 °C</p>
+                    <p>Density: 1020 (Kg/M<sub>3</sub>)</p>
                 </div>
                 <div class="card-footer bg-dark">
                     <input type="button" value="Learn More" class="btn btn-block btn-outline-secondary" onclick="window.location= '@Url.Action("Info", "Material")'" />
