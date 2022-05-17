@@ -8,7 +8,7 @@
 @if (TempData.ContainsKey("SettingSave"))
 {
 
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show mt-1" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -18,7 +18,7 @@
 @if (TempData.ContainsKey("SettingUpdate"))
 {
 
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show mt-1" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -27,7 +27,7 @@
 }
 @if (TempData.ContainsKey("NoBed"))
 {
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show mt-1" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -45,12 +45,12 @@
             <div class="card-header bg-secondary text-light">Printer Info:</div>
             @if (Model.Image != null && Model.Image.Count() > 0)
             {
-                <img class="card-img-top" src="/Printer/RetrieveImage/@Model.PrinterId" alt="" />
+                <img class="card-img-top" width="300" height="300" src="/Printer/RetrieveImage/@Model.PrinterId" alt="" />
 
             }
             else
             {
-                <img class="card-img-top" src="~/Content/img/noprinter.png" />
+                <img class="card-img-top" width="300" height="300" src="~/Content/img/noprinter.png" />
             }
             <div class="card-body bg-dark">
                 <h4 class="card-title"> @Html.DisplayFor(model => model.PrinterBrand)</h4>
